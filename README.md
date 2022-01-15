@@ -13,7 +13,7 @@ With Omni you can use Chrome like a pro. Manage tabs, bookmarks, your browser hi
 
 <a href="https://www.producthunt.com/posts/omni-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-omni-3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=326242&theme=light&period=daily" alt="Omni - The all-in-one tool to supercharge your productivity | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-Made by [Alyssa X](https://alyssax.com)
+Made by [Alyssa X](https://alyssax.com) redeveloped into Svelte by [Drew Hutton](https://github.com/yoroshikun)
 
 ## Table of contents
 
@@ -51,7 +51,7 @@ On Windows it depends on the OS version. [Here is a guide for Windows 11 and 10.
 
 After switching the theme you might need to restart Chrome.
 
-## List of commands
+## List of commands (TODO)
 
 You can use a variety of commands with Omni to perform actions or filter your results.
 
@@ -61,10 +61,31 @@ You can use a variety of commands with Omni to perform actions or filter your re
 - **/actions**: Search all available actions
 - **/remove**: Remove a bookmark or close a tab
 
+## Dev notes
+
+To develop with this extension you need to have npm or yarn installed.
+Once you have downloaded the git repo, you can install the dependencies by running `npm install` or `yarn install`.
+
+```bash
+npm install
+# or yarn install
+```
+
+To run the extension in development mode, you can run `npm dev` or `yarn dev`.
+
+```bash
+npm dev
+# or yarn dev
+```
+
+To build for production, you can run `npm build` or `yarn build`.
+```bash
+npm build
+# or yarn build
+```
+All required files will be copied to the `dist` folder.
+
 ## Libraries used
 
-- [jQuery](https://jquery.com/) - for better event handling and DOM manipulation
+- [Svelte](https://svelte.dev/) - Modern Framework for building the future web
 
-#
-
-Feel free to reach out to me through email at hi@alyssax.com or [on Twitter](https://twitter.com/alyssaxuu) if you have any questions or feedback! Hope you find this useful 💜
