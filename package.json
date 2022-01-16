@@ -1,6 +1,6 @@
 {
-  "name": "omni-svelte",
-  "version": "1.2.5",
+  "name": "somni",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "build": "rollup -c",

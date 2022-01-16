@@ -1,68 +1,9 @@
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #1E2128;
-		--border: #35373E;
-		--text: #F1F1F1;
-		--text-2: #C5C6CA;
-		--text-3: #A5A5AE;
-		--select: #17191E;
-		--accent: #6068D2;
-		--accent-hover: #484FAC;
-		--shortcut: #383E4A;
-		--placeholder: #63687B;
-		--background-2: #292D36;
-	}
-}
-@media (prefers-color-scheme: light) {
-	:root {
-		--background: #FAFCFF;
-		--border: #F2F3FB;
-		--text: #2B2D41;
-		--text-2: #2B2D41;
-		--text-3: #929DB2;
-		--select: #EFF3F9;
-		--accent: #6068D2;
-		--accent-hover: #484FAC;
-		--shortcut: #DADEEA;
-		--placeholder: #BAC2D1;
-		--background-2: #292D36;
-	}
-}
-
-@font-face {
- font-family: 'Inter';
- font-style: normal;
- font-weight: 400;
- src: url('chrome-extension://__MSG_@@extension_id__/fonts/Inter-Regular.ttf');
-}
-
-@font-face {
- font-family: 'Inter';
- font-style: normal;
- font-weight: 500;
- src: url('chrome-extension://__MSG_@@extension_id__/fonts/Inter-Medium.ttf');
-}
-
-@font-face {
- font-family: 'Inter';
- font-style: normal;
- font-weight: 600;
- src: url('chrome-extension://__MSG_@@extension_id__/fonts/Inter-SemiBold.ttf');
-}
-
-@font-face {
- font-family: 'Inter';
- font-style: normal;
- font-weight: 700;
- src: url('chrome-extension://__MSG_@@extension_id__/fonts/Inter-Bold.ttf');
-}
-
 .omni-extension .omni-item-details * {
 	line-height: normal;
 }
 
 .omni-extension {
-  font-family: Inter !important;
+  font-family: OpenSans !important;
 	z-index: 99999999999;
 }
 

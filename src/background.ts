@@ -1,6 +1,6 @@
-import type { Action } from "./helpers/actionsList";
-import { reset } from "./helpers/actionReset";
-import { handleAction } from "./helpers/actions";
+import refreshActions from "./actions/refreshActions";
+import handleAction from "./actions/handleAction";
+import { getBookmarks, getTabs } from "./actions/chrome";
 
 // Open on install
 chrome.runtime.onInstalled.addListener((object) => {
@@ -67,9 +67,10 @@ chrome.commands.onCommand.addListener((command) => {
 });
 
 const reSyncOmni = async () => {
-  await reset();
-  const tabs = getTabs();
+  const tabs = await getTabs();
   const bookmarks = getBookmarks();
+  await refreshActions([...tabs, ...bookmarks]);
+  // Send a message back to the content script
 };
 
 // Check if tabs have changed and actions need to be fetched again
@@ -78,49 +79,6 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) =>
 );
 chrome.tabs.onCreated.addListener(async (tab) => reSyncOmni());
 chrome.tabs.onRemoved.addListener(async (tabId, changeInfo) => reSyncOmni());
-
-const getTabs = () => {
-  chrome.tabs.query({}, (tabs) => {
-    const tabActions: Action[] = tabs.map((tab) => ({
-      title: tab.title,
-      desc: "Chrome tab",
-      keycheck: false,
-      action: "switch-tab",
-      type: "tab",
-    }));
-
-    return tabActions;
-  });
-};
-
-const getBookmarks = () => {
-  const newActions: Action[] = [];
-  const process_bookmark = (bookmarks: chrome.bookmarks.BookmarkTreeNode[]) => {
-    for (const bookmark of bookmarks) {
-      if (bookmark.url) {
-        newActions.push({
-          title: bookmark.title,
-          desc: "Bookmark",
-          bookmarkId: bookmark.id,
-          url: bookmark.url,
-          type: "bookmark",
-          action: "bookmark",
-          emoji: true,
-          emojiChar: "⭐️",
-          keyCheck: false,
-        });
-      }
-
-      if (bookmark.children) {
-        process_bookmark(bookmark.children);
-      }
-    }
-  };
-
-  chrome.bookmarks.getTree(process_bookmark);
-
-  return newActions;
-};
 
 // Receive messages from any tab
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
