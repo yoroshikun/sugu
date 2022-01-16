@@ -1,19 +1,13 @@
-# Omni Svelte
+# SOmni Search
 
-![Preview](preview.gif)
-<br>
-<br>
-> This is a svelte rebuild of the entire project for educational purposes
+> Disclaimer: This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) more disclaimer below in the [Disclaimer](#disclaimer) section.
 
-The most powerful interface for Chrome 🔥
+Supercharge your browser workflow with SOmni Search. 
 
-With Omni you can use Chrome like a pro. Manage tabs, bookmarks, your browser history, perform all sorts of actions and more with a simple command interface.
+<!-- [👉 Get it now](https://chrome.google.com/webstore/detail/omni/mapjgeachilmcbbokkgcbgpbakaaeehi?hl=en&authuser=0) -->
 
-[👉 Get it now](https://chrome.google.com/webstore/detail/omni/mapjgeachilmcbbokkgcbgpbakaaeehi?hl=en&authuser=0)
 
-<a href="https://www.producthunt.com/posts/omni-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-omni-3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=326242&theme=light&period=daily" alt="Omni - The all-in-one tool to supercharge your productivity | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-Made by [Alyssa X](https://alyssax.com) redeveloped into Svelte by [Drew Hutton](https://github.com/yoroshikun)
+Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X](https://alyssax.com)s [Omni](https://github.com/alyssaxuu/omni)
 
 ## Table of contents
 
@@ -23,27 +17,37 @@ Made by [Alyssa X](https://alyssax.com) redeveloped into Svelte by [Drew Hutton]
   - [Closing Omni](#closing-omni)
   - [Switching between dark and light mode](#switching-between-dark-and-light-mode)
 - [List of commands](#list-of-commands)
-- [Libraries used](#libraries-used)
+- [Developer contribution guide](#developer-contribution-guide)
+- [Special Thanks](#special-thanks)
 
 ## Features
 
-🗄 Switch, open, close, and search your tabs<br> 📚 Browse and manage your bookmarks<br> 🔍 Search your browsing history<br> ⚡️ 50+ actions to improve your productivity<br> 🔮 Special commands to filter and perform more actions<br> 🧩 Integrations with Notion, Figma, Docs, Asana...<br> ⌨️ Shortcuts for actions such as muting, pinning, bookmarking...<br> ⚙️ Advanced settings to help troubleshoot browsing issues<br> 🌙 Dark mode<br> ...and much more - all for free & no sign in needed!
+- ⚡️ Blazing fast and lightweight UX
+- 🗂 Tab management
+- 📚 Bookmarks management
+- ⌨ Keyboard shortcuts
+- 🔌 Plugin based extendable actions
+- 🌙 Dark and light mode
+- 🔒 Secure, private no login
+- 🧩 Integrations 
+
+Much more not listed...
 
 ## Controlling the interface
 
-### Opening Omni
+### Opening SOmni
 
-To open Omni, simply press `⌘+K` on Mac or `Ctrl+K` on Windows. You can change the shortcut by going to chrome://extensions/shortcuts.
+To open SOmni, simply press `⌘+K` on Mac or `Ctrl+K` on Windows. You can change the shortcut by going to chrome://extensions/shortcuts.
 
 Alternatively you can click on the extension icon in the toolbar to toggle it.
 
-### Closing Omni
+### Closing SOmni
 
-To close Omni you can press `Esc`, click on the background, or press the extension icon.
+To close SOmni you can press `Esc`, click on the background, or press the extension icon.
 
 ### Switching between dark and light mode
 
-The dark and light theme in Omni is tied to your system's theme.
+The dark and light theme in SOmni is currently tied to your system's theme.
 
 On Mac you can change the theme by clicking on the Apple menu (on the top left), opening the System preferences, going into the General section, and then choosing between dark, light, or auto.
 
@@ -51,9 +55,9 @@ On Windows it depends on the OS version. [Here is a guide for Windows 11 and 10.
 
 After switching the theme you might need to restart Chrome.
 
-## List of commands (TODO)
+## List of commands
 
-You can use a variety of commands with Omni to perform actions or filter your results.
+You can use a variety of commands with SOmni to perform actions or filter your results.
 
 - **/tabs**: Search your tabs
 - **/bookmarks**: Search your bookmarks
@@ -61,31 +65,41 @@ You can use a variety of commands with Omni to perform actions or filter your re
 - **/actions**: Search all available actions
 - **/remove**: Remove a bookmark or close a tab
 
-## Dev notes
+## Developers contribution guide
 
 To develop with this extension you need to have npm or yarn installed.
-Once you have downloaded the git repo, you can install the dependencies by running `npm install` or `yarn install`.
+Once you have downloaded the git repo, you can install the dependencies by running `npm install` or `yarn`. This project preferably uses yarn. Please do not commit the npm.lock file.
 
 ```bash
-npm install
-# or yarn install
+yarn
+# or npm install
 ```
 
-To run the extension in development mode, you can run `npm dev` or `yarn dev`.
+To run the extension in development mode, you can run `npm run dev` or `yarn dev`.
 
 ```bash
-npm dev
-# or yarn dev
+yarn build
+# or npm run dev
 ```
 
-To build for production, you can run `npm build` or `yarn build`.
+To build for production, you can run `npm run build` or `yarn build`.
 ```bash
-npm build
-# or yarn build
+yarn build
+# or npm run build
 ```
 All required files will be copied to the `dist` folder.
 
-## Libraries used
+## Special Thanks
 
-- [Svelte](https://svelte.dev/) - Modern Framework for building the future web
+- [Svelte](https://svelte.dev/) - Cybernetically Enhanced Web Apps
+- [Omni](https://github.com/alyssaxuu/omni) - Alyssa X's Original Omni Chrome Extension
 
+## Disclaimer
+
+### Acknowledgments
+
+This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) by Alyssa X. This project was originally developed to be a alternative JQuery-less version of Omni, but due to the scope of changes and rewrites the project has become its own development. The project is offered with the same MIT license so that people are free to take optimizations and implement them back into Omni if wanted.
+
+## Contact
+
+Any questions, comments or direct feedback you are welcome to contact me with email [Here](mailto:drew.hutton@pm.me) or raise a Github issue.

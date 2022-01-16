@@ -1,6 +1,5 @@
-import type { Action } from "../helpers/actionsList";
+import type { Action } from "../actions/types";
 import { writable } from "svelte/store";
-import { reset } from "../helpers/actionReset";
 
 const createActions = () => {
   const { subscribe, set, update } = writable<Action[]>([]);
@@ -9,9 +8,6 @@ const createActions = () => {
     subscribe,
     set: (actions: Action[]) => {
       set(actions);
-    },
-    reset: async () => {
-      set(await reset()); // A frontend reset
     },
   };
 };

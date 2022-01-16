@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Action } from "../helpers/actionsList";
+  import type { Action } from "../actions/types";
   import { onMount, onDestroy } from "svelte";
 
   import "../styles/index.css";
   import { actions } from "../stores/actions";
-  import handleFrontendAction from "../helpers/frontendActions";
+  import handleBrowserAction from "../actions/browser";
 
   let isOpen = false;
   let searchValue = "";
@@ -94,7 +94,7 @@
       tab: selectedAction,
     }); // Hmmm
 
-    handleFrontendAction(selectedAction, event);
+    handleBrowserAction(selectedAction, event);
   };
 
   const handleCommand = (
@@ -270,7 +270,7 @@
         />
       </div>
       <div id="omni-list">
-        {#each truncatedActions as action (action.title)}
+        {#each truncatedActions as action}
           <div
             id="omni-item-{action.title.toLowerCase().replaceAll(' ', '-')}"
             class="omni-item"
@@ -299,7 +299,7 @@
                 {action.desc}
               </div>
             </div>
-            {#if action.keyCheck && selectedAction.title !== action.title}
+            {#if action.showKeys && selectedAction.title !== action.title}
               <div class="omni-keys">
                 {#each action.keys as key}
                   <span class="omni-shortcut">{key}</span>
@@ -326,3 +326,64 @@
   </div>
   <div id="omni-overlay" />
 </div>
+
+<style global>
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #1e2128;
+      --border: #35373e;
+      --text: #f1f1f1;
+      --text-2: #c5c6ca;
+      --text-3: #a5a5ae;
+      --select: #17191e;
+      --accent: #6068d2;
+      --accent-hover: #484fac;
+      --shortcut: #383e4a;
+      --placeholder: #63687b;
+      --background-2: #292d36;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --background: #fafcff;
+      --border: #f2f3fb;
+      --text: #2b2d41;
+      --text-2: #2b2d41;
+      --text-3: #929db2;
+      --select: #eff3f9;
+      --accent: #6068d2;
+      --accent-hover: #484fac;
+      --shortcut: #dadeea;
+      --placeholder: #bac2d1;
+      --background-2: #292d36;
+    }
+  }
+
+  @font-face {
+    font-family: "OpenSans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: "OpenSans";
+    font-style: normal;
+    font-weight: 500;
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Medium.ttf");
+  }
+
+  @font-face {
+    font-family: "OpenSans";
+    font-style: normal;
+    font-weight: 600;
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-SemiBold.ttf");
+  }
+
+  @font-face {
+    font-family: "OpenSans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.ttf");
+  }
+</style>
