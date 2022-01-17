@@ -13,8 +13,8 @@ Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X]
 
 - [Features](#features)
 - [Controlling the interface](#controlling-the-interface)
-  - [Opening Omni](#opening-omni)
-  - [Closing Omni](#closing-omni)
+  - [Opening SOmni](#opening-somni)
+  - [Closing SOmni](#closing-somni)
   - [Switching between dark and light mode](#switching-between-dark-and-light-mode)
 - [List of commands](#list-of-commands)
 - [Developer contribution guide](#developer-contribution-guide)

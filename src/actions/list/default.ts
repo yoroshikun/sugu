@@ -328,7 +328,6 @@ const actions: Action[] = [
     type: "action",
     action: "url",
     url: "https://cal.new",
-
     favIconUrl: chrome.runtime.getURL("icons/logo-calendar.png"),
   },
   {
@@ -384,7 +383,6 @@ const actions: Action[] = [
     action: "extensions",
     emoji: true,
     emojiChar: "🧩",
-
     keys: ["⌘", "D"],
   },
   {

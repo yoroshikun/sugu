@@ -171,7 +171,6 @@ const handleAction = async (message, sender, sendResponse): Promise<any> => {
     case "get-actions":
       const tabs = await getTabs();
       const bookmarks = getBookmarks();
-      console.log(tabs, bookmarks);
       const actions = await refreshActions([...tabs, ...bookmarks]);
       return sendResponse({ actions });
     case "switch-tab":
