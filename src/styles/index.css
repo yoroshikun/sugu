@@ -102,41 +102,6 @@
   padding-right: 3px;
 }
 
-.omni-extension input {
-  background: transparent;
-  border: 0px;
-  outline: none;
-  font-size: 20px;
-  font-weight: 400;
-  height: 50px;
-  width: 92%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  color: var(--text);
-  caret-color: var(--accent);
-	font-family: Inter!important;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  box-sizing: border-box;
-	outline: none;
-	border: 0px;
-	box-shadow: none;
-}
-
-.omni-extension ::placeholder {
-  color: var(--placeholder);
-  opacity: 1;
-}
-
-.omni-extension :-ms-input-placeholder {
-  color: var(--placeholder);
-}
-
-.omni-extension ::-ms-input-placeholder {
-  color: var(--placeholder);
-}
-
 .omni-extension #omni-list {
   width: 100%;
   overflow: auto;

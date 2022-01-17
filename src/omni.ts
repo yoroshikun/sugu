@@ -1,4 +1,4 @@
-import Omni from "./components/Omni.svelte";
+import Omni from "./components/SOmni.svelte";
 
 // Inject Omni in every tab, this can be optimized
 const body = document.body;
