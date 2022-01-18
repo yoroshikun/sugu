@@ -45,7 +45,7 @@ const createActions = () => {
         };
       });
     },
-    dispatchSelectedAction: (e: KeyboardEvent) => {
+    dispatchAction: (e: KeyboardEvent) => {
       const selectedAction = get(actions).selectedAction;
 
       if (!selectedAction) {

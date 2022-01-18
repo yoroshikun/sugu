@@ -1,8 +1,8 @@
 {
-  "name": "Omni Svelte",
+  "name": "Somni",
   "description": "Supercharge Chrome with commands, shortcuts, and more",
   "offline_enabled": true,
-  "version": "1.1.5",
+  "version": "1.1.0",
   "manifest_version": 3,
   "action": {
     "default": "somni.html",
@@ -18,7 +18,7 @@
     "128": "/icons/logo-128.png"
   },
   "commands": {
-    "open-omni": {
+    "open-somni": {
       "suggested_key": {
         "default": "Ctrl+K",
         "mac": "Command+K"

@@ -23,9 +23,11 @@
     <div class="" />
   {/if}
   <input
+    id="somni-input"
+    type="search"
+    autocomplete="off"
     class="somni-search-input"
-    placeholder="Type a command or searchs"
-    type="text"
+    placeholder="Type away"
     bind:value={searchValue}
     on:input={(e) => debounce(handleSearchInput(e))}
   />
@@ -45,7 +47,7 @@
     display: block;
     color: var(--text);
     caret-color: var(--accent);
-    margin: 0.5rem;
+    margin: 1rem;
     box-sizing: border-box;
   }
 
@@ -54,11 +56,10 @@
     opacity: 1;
   }
 
-  .somni-search-input:-ms-input-placeholder {
-    color: var(--placeholder);
-  }
-
-  .somni-search-input::-ms-input-placeholder {
-    color: var(--placeholder);
+  .somni-search-input::-webkit-search-decoration,
+  .somni-search-input::-webkit-search-cancel-button,
+  .somni-search-input::-webkit-search-results-button,
+  .somni-search-input::-webkit-search-results-decoration {
+    display: none;
   }
 </style>
