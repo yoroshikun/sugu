@@ -54,14 +54,14 @@ chrome.runtime.onInstalled.addListener((object) => {
 
 // Check when the extension button is clicked
 chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.sendMessage(tab.id, { request: "open-omni" });
+  chrome.tabs.sendMessage(tab.id, { request: "open-somni" });
 });
 
 // Listen for the open omni shortcut
 chrome.commands.onCommand.addListener((command) => {
-  if (command === "open-omni") {
+  if (command === "open-somni") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { request: "open-omni" });
+      chrome.tabs.sendMessage(tabs[0].id, { request: "open-somni" });
     });
   }
 });

@@ -1,19 +1,32 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
+  import { fade, fly } from "svelte/transition";
+  import { cubicIn } from "svelte/easing";
 
-  import "../styles/index.css";
+  import {
+    addOverrideListeners,
+    removeOverrideListeners,
+  } from "../helpers/overrideListeners";
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
   import SearchBar from "./SearchBar.svelte";
+  import ActionItem from "./ActionItem.svelte";
+  import Footer from "./Footer.svelte";
 
   let isOpen = false;
 
-  // Event handlers
-  const handleCloseOmni = () => {
+  // Handle propigated events
+  const handleClick = () => {
+    // Does not pass in keyboard events
+    handleAction();
+  };
+
+  // Helpers
+  const closeSOmni = () => {
     isOpen = false;
   };
 
-  const handleOpenOmni = () => {
+  const openSOmni = () => {
     isOpen = true;
 
     actions.reset();
@@ -21,7 +34,7 @@
     // Autofocus on search input
     setTimeout(() => {
       const searchInput = document.querySelector(
-        "#omni-search-input"
+        "#somni-input"
       ) as HTMLInputElement;
 
       if (searchInput) {
@@ -30,20 +43,19 @@
     }, 100);
   };
 
-  const handleAction = (event?: KeyboardEvent) => {
-    handleCloseOmni();
+  // Handlers
+  $: handleAction = (event?: KeyboardEvent) => {
+    closeSOmni();
 
-    actions.dispatchSelectedAction(event);
-  };
+    if ($search.command) {
+      return actions.dispatchCommand(event);
+    }
 
-  const handleCommand = (event?: KeyboardEvent) => {
-    handleCloseOmni();
-
-    actions.dispatchCommand(event);
+    return actions.dispatchAction(event);
   };
 
   $: handleInteraction = (event: KeyboardEvent) => {
-    // Only care if the user has omni open
+    // Only care if the user has somni open
     if (!isOpen) {
       return;
     }
@@ -51,12 +63,9 @@
     // Singular cases
     switch (event.key) {
       case "Escape":
-        return handleCloseOmni();
+        return closeSOmni();
       case "Enter":
-        if (!$search.command) {
-          return handleAction(event);
-        }
-        handleCommand(event);
+        handleAction(event);
         return;
       case "ArrowDown": {
         return actions.selectNearest(1);
@@ -73,7 +82,7 @@
         return;
       }
       chrome.runtime.sendMessage({ request: "unpin" });
-      handleCloseOmni();
+      closeSOmni();
       return;
     }
 
@@ -83,7 +92,7 @@
         return;
       }
       chrome.runtime.sendMessage({ request: "unmute" });
-      handleCloseOmni();
+      closeSOmni();
       return;
     }
 
@@ -95,94 +104,65 @@
 
   // Listeners
   const messageListener = (message) => {
-    if (message.request === "open-omni") {
-      return handleOpenOmni();
+    if (message.request === "open-somni") {
+      return openSOmni();
     }
-    if (message.request === "close-omni") {
-      return handleCloseOmni();
+    if (message.request === "close-somni") {
+      return closeSOmni();
     }
   };
 
   // Truncated
   $: truncatedActions = $actions.filteredActions.slice(0, 75);
+  $: results = $actions.filteredActions.length;
 
   onMount(() => {
     actions.reset();
+
+    // Override any existing eventListeners (Fight the focus trap)
+    addOverrideListeners();
 
     // Subscribe to background messages
     chrome.runtime.onMessage.addListener(messageListener);
   });
 
   onDestroy(() => {
+    // Remove overriding eventListeners
+    removeOverrideListeners();
+
     chrome.runtime.onMessage.removeListener(messageListener);
   });
 </script>
 
 <svelte:window on:keydown={handleInteraction} />
 
-<div id="omni-extension" class="omni-extension" class:omni-closing={!isOpen}>
-  <div id="omni-wrap">
-    <div id="omni">
-      <SearchBar />
-      <div id="omni-list">
-        {#each truncatedActions as action}
-          <div
-            id="omni-item-{action.title.toLowerCase().split(' ').join('-')}"
-            class="omni-item"
-            class:omni-item-active={$actions.selectedAction === action}
-            data-type={action.type}
-            data-url={action.url}
-            on:click={() => handleAction()}
-            on:mouseenter={() => actions.selectAction(action)}
-          >
-            {#if action.emoji}
-              <span class="omni-emoji-action">{action.emojiChar}</span>
-            {/if}
-            {#if action.favIconUrl}
-              <img
-                class="omni-icon"
-                src={action.favIconUrl ||
-                  chrome.runtime.getURL("icons/globe.svg")}
-                alt={action.title}
-              />
-            {/if}
-            <div class="omni-item-details">
-              <div class="omni-item-name">
-                {action.title}
-              </div>
-              <div class="omni-item-desc">
-                {action.desc}
-              </div>
-            </div>
-            {#if action.showKeys && $actions.selectedAction !== action}
-              <div class="omni-keys">
-                {#each action.keys as key}
-                  <span class="omni-shortcut">{key}</span>
-                {/each}
-              </div>
-            {/if}
-            {#if $actions.selectedAction === action}
-              <div class="omni-select">
-                <span class="omni-shortcut"> ⏎ </span>
-              </div>
-            {/if}
-          </div>
-        {/each}
-      </div>
-      <div id="omni-footer">
-        <div id="omni-results">{$actions.filteredActions.length} results</div>
-        <div id="omni-arrows">
-          Use arrow keys <span class="omni-shortcut">↑</span><span
-            class="omni-shortcut">↓</span
-          > to navigate
+{#if isOpen}
+  <div>
+    <div class="wrapper">
+      <div
+        class="inner"
+        in:fly={{ y: 40, duration: 325, easing: cubicIn }}
+        out:fly={{ y: -40, duration: 325, easing: cubicIn }}
+      >
+        <SearchBar />
+        <div class="list">
+          {#each truncatedActions as action}
+            <ActionItem on:handleClick={handleClick} {action} />
+          {/each}
         </div>
+        <Footer {results} />
       </div>
     </div>
+    <div
+      class="overlay"
+      in:fade={{ duration: 125, easing: cubicIn }}
+      out:fade={{ duration: 125, easing: cubicIn }}
+      on:click={() => closeSOmni()}
+    />
   </div>
-  <div id="omni-overlay" />
-</div>
+{/if}
 
-<style global>
+<style>
   @media (prefers-color-scheme: dark) {
     :root {
       --background: #1e2128;
@@ -240,5 +220,49 @@
     font-style: normal;
     font-weight: 700;
     src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.ttf");
+  }
+
+  .overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 9999;
+    opacity: 0.7;
+  }
+
+  .wrapper {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    padding-top: 8rem;
+    z-index: 9999999999; /* Very high z-index */
+  }
+
+  .inner {
+    display: block;
+    position: relative;
+    width: 70vw;
+    background: var(--background);
+    border: 1px solid var(--border);
+    font-family: "OpenSans", sans-serif;
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    z-index: 9999999998;
+  }
+
+  .list {
+    overflow: auto;
+    width: 100%;
+    max-height: 400px;
+    border-top: 1px solid var(--border);
   }
 </style>
