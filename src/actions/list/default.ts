@@ -83,10 +83,10 @@ const actions: Action[] = [
   },
   {
     title: "Help",
-    desc: "Get help with Omni on GitHub",
+    desc: "Get help with Sugu on GitHub",
     type: "action",
     action: "url",
-    url: "https://github.com/alyssaxuu/omni",
+    url: "https://github.com/yoroshikun/sugu-search",
     emoji: true,
     emojiChar: "🤔",
   },

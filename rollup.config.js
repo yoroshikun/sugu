@@ -57,8 +57,4 @@ function createConfig(filename, useSvelte = false) {
   };
 }
 
-export default [
-  createConfig("omni", true),
-  createConfig("background"),
-  // createConfig("content_script"),
-];
+export default [createConfig("sugu", true), createConfig("background")];

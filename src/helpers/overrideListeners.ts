@@ -1,39 +1,39 @@
 const listeners = [
   {
     type: "focus",
-    listener: (e) => focusSomni(),
+    listener: (e) => focussugu(),
     useCapture: true,
   },
   {
     type: "focusin",
-    listener: (e) => focusSomni(),
+    listener: (e) => focussugu(),
     useCapture: true,
   },
   {
     type: "focusout",
-    listener: (e) => blurSomni(),
+    listener: (e) => blursugu(),
     useCapture: true,
   },
   {
     type: "blur",
-    listener: (e) => blurSomni(),
+    listener: (e) => blursugu(),
     useCapture: true,
   },
 ];
 
-const focusSomni = () => {
-  const somni = document.getElementById("somni-input");
+const focussugu = () => {
+  const sugu = document.getElementById("sugu-input");
 
-  if (somni) {
-    somni.focus();
+  if (sugu) {
+    sugu.focus();
   }
 };
 
-const blurSomni = () => {
-  const somni = document.getElementById("somni-input");
+const blursugu = () => {
+  const sugu = document.getElementById("sugu-input");
 
-  if (somni) {
-    somni.blur();
+  if (sugu) {
+    sugu.blur();
   }
 };
 

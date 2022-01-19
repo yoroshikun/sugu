@@ -3,6 +3,7 @@ import type { Action } from "../actions/types";
 import { writable, get } from "svelte/store";
 import handleBrowserAction from "../actions/browser";
 import { search } from "./search";
+import { getScrollParent } from "../helpers/getScrollParent";
 
 const createActions = () => {
   const { subscribe, set, update } = writable<{
@@ -93,6 +94,7 @@ const createActions = () => {
       }
     },
     selectNearest: (offset: number) => {
+      // A fix to fast scrollers is to just count the index and scroll by the amount
       update((prev) => {
         if (prev.filteredActions.length < 0) {
           return prev;
@@ -109,15 +111,17 @@ const createActions = () => {
         }
 
         const element = document.querySelector(
-          `#omni-item-${newAction.title.toLowerCase().split(" ").join("-")}`
+          `#sugu-item-${newAction.title.toLowerCase().split(" ").join("-")}`
         );
+        const scrollParent = getScrollParent(element);
+        const scrollOffset = offset > 0 ? -527 : -273; // Odd numbers to make it harder to get locked
 
-        if (element) {
-          element.scrollIntoView({
-            block: "nearest",
-            inline: "nearest",
-            behavior: "smooth",
-          });
+        if (element && scrollParent) {
+          const y =
+            element.getBoundingClientRect().top +
+            scrollParent.scrollTop +
+            scrollOffset;
+          scrollParent.scrollTo({ top: y, behavior: "smooth" });
         }
 
         return {
@@ -128,6 +132,7 @@ const createActions = () => {
       });
     },
     selectAction: (action: Action) => {
+      console.log("Selecting action: ", action);
       update((prev) => {
         return {
           actions: prev.actions,

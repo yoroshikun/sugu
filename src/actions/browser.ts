@@ -40,7 +40,7 @@ const handleAction = (action: Action, event?: KeyboardEvent) => {
     case "email":
       return newEmail();
     case "url":
-      return navigate;
+      return navigate(action.url, event);
   }
 };
 
