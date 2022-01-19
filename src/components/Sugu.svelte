@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { cubicIn } from "svelte/easing";
+  import VirtualList from "@sveltejs/svelte-virtual-list";
 
   import {
     addOverrideListeners,
@@ -22,11 +23,11 @@
   };
 
   // Helpers
-  const closeSOmni = () => {
+  const closeSugu = () => {
     isOpen = false;
   };
 
-  const openSOmni = () => {
+  const openSugu = () => {
     isOpen = true;
 
     actions.reset();
@@ -34,7 +35,7 @@
     // Autofocus on search input
     setTimeout(() => {
       const searchInput = document.querySelector(
-        "#somni-input"
+        "#sugu-input"
       ) as HTMLInputElement;
 
       if (searchInput) {
@@ -45,7 +46,7 @@
 
   // Handlers
   $: handleAction = (event?: KeyboardEvent) => {
-    closeSOmni();
+    closeSugu();
 
     if ($search.command) {
       return actions.dispatchCommand(event);
@@ -55,7 +56,7 @@
   };
 
   $: handleInteraction = (event: KeyboardEvent) => {
-    // Only care if the user has somni open
+    // Only care if the user has sugu open
     if (!isOpen) {
       return;
     }
@@ -63,7 +64,7 @@
     // Singular cases
     switch (event.key) {
       case "Escape":
-        return closeSOmni();
+        return closeSugu();
       case "Enter":
         handleAction(event);
         return;
@@ -82,7 +83,7 @@
         return;
       }
       chrome.runtime.sendMessage({ request: "unpin" });
-      closeSOmni();
+      closeSugu();
       return;
     }
 
@@ -92,7 +93,7 @@
         return;
       }
       chrome.runtime.sendMessage({ request: "unmute" });
-      closeSOmni();
+      closeSugu();
       return;
     }
 
@@ -104,16 +105,18 @@
 
   // Listeners
   const messageListener = (message) => {
-    if (message.request === "open-somni") {
-      return openSOmni();
+    if (message.request === "open-sugu") {
+      return openSugu();
     }
-    if (message.request === "close-somni") {
-      return closeSOmni();
+    if (message.request === "close-sugu") {
+      return closeSugu();
     }
   };
 
   // Truncated
-  $: truncatedActions = $actions.filteredActions.slice(0, 75);
+  $: filteredActions = $actions.filteredActions;
+  $: listHeight =
+    filteredActions.length * 60 > 400 ? 400 : filteredActions.length * 60;
   $: results = $actions.filteredActions.length;
 
   onMount(() => {
@@ -124,6 +127,7 @@
 
     // Subscribe to background messages
     chrome.runtime.onMessage.addListener(messageListener);
+    isOpen = true;
   });
 
   onDestroy(() => {
@@ -138,6 +142,12 @@
 
 {#if isOpen}
   <div>
+    <div
+      class="overlay"
+      in:fade={{ duration: 125, easing: cubicIn }}
+      out:fade={{ duration: 125, easing: cubicIn }}
+      on:click={() => closeSugu()}
+    />
     <div class="wrapper">
       <div
         class="inner"
@@ -146,19 +156,23 @@
       >
         <SearchBar />
         <div class="list">
-          {#each truncatedActions as action}
+          <VirtualList
+            items={filteredActions}
+            height={`${listHeight}px`}
+            itemHeight={60}
+            let:item
+          >
+            {#if item}
+              <ActionItem on:handleClick={handleClick} action={item} />
+            {/if}
+            <!-- {#each truncatedActions as action}
             <ActionItem on:handleClick={handleClick} {action} />
-          {/each}
+          {/each} -->
+          </VirtualList>
         </div>
         <Footer {results} />
       </div>
     </div>
-    <div
-      class="overlay"
-      in:fade={{ duration: 125, easing: cubicIn }}
-      out:fade={{ duration: 125, easing: cubicIn }}
-      on:click={() => closeSOmni()}
-    />
   </div>
 {/if}
 

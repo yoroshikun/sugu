@@ -1,11 +1,11 @@
 {
-  "name": "Somni",
-  "description": "Supercharge Chrome with commands, shortcuts, and more",
+  "name": "Sugu",
+  "description": "Instant spotlight like search and actions with Sugu Search for your browser",
   "offline_enabled": true,
-  "version": "1.1.0",
+  "version": "1.0.0",
   "manifest_version": 3,
   "action": {
-    "default": "somni.html",
+    "default": "sugu.html",
     "default_icons": {
       "16": "icons/logo-16.png",
       "48": "icons/logo-48.png",
@@ -18,20 +18,20 @@
     "128": "/icons/logo-128.png"
   },
   "commands": {
-    "open-somni": {
+    "open-sugu": {
       "suggested_key": {
-        "default": "Ctrl+K",
-        "mac": "Command+K"
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
       },
-      "description": "Open command menu"
+      "description": "Open Sugu Search"
     }
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "run_at": "document_end",
-      "js": ["build/omni.js"],
-      "css": ["build/omni.css"]
+      "js": ["build/sugu.js"],
+      "css": ["build/sugu.css"]
     }
   ],
   "background": {
@@ -39,7 +39,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["omni.html", "fonts/*", "icons/*", "build/*"],
+      "resources": ["fonts/*", "icons/*", "build/*"],
       "matches": ["<all_urls>"]
     }
   ],

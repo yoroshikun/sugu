@@ -4,7 +4,6 @@ import { getBookmarks, getTabs } from "./actions/chrome";
 
 // Open on install
 chrome.runtime.onInstalled.addListener((object) => {
-  // Inject Omni on install
   const manifest = chrome.runtime.getManifest();
 
   const injectIntoTab = (tab) => {
@@ -47,26 +46,24 @@ chrome.runtime.onInstalled.addListener((object) => {
     }
   );
 
-  if (object.reason === "install") {
-    chrome.tabs.create({ url: "https://alyssax.com/omni/" });
-  }
+  // if (object.reason === "install") {
+  //   chrome.tabs.create({ url: "https://github.com/yoroshikun/sugu-search" });
+  // }
 });
 
-// Check when the extension button is clicked
 chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.sendMessage(tab.id, { request: "open-somni" });
+  chrome.tabs.sendMessage(tab.id, { request: "open-sugu" });
 });
 
-// Listen for the open omni shortcut
 chrome.commands.onCommand.addListener((command) => {
-  if (command === "open-somni") {
+  if (command === "open-sugu") {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { request: "open-somni" });
+      chrome.tabs.sendMessage(tabs[0].id, { request: "open-sugu" });
     });
   }
 });
 
-const reSyncOmni = async () => {
+const reSyncSugu = async () => {
   const tabs = await getTabs();
   const bookmarks = getBookmarks();
   await refreshActions([...tabs, ...bookmarks]);
@@ -75,10 +72,10 @@ const reSyncOmni = async () => {
 
 // Check if tabs have changed and actions need to be fetched again
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) =>
-  reSyncOmni()
+  reSyncSugu()
 );
-chrome.tabs.onCreated.addListener(async (tab) => reSyncOmni());
-chrome.tabs.onRemoved.addListener(async (tabId, changeInfo) => reSyncOmni());
+chrome.tabs.onCreated.addListener(async (tab) => reSyncSugu());
+chrome.tabs.onRemoved.addListener(async (tabId, changeInfo) => reSyncSugu());
 
 // Receive messages from any tab
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

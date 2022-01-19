@@ -23,10 +23,10 @@
     <div class="" />
   {/if}
   <input
-    id="somni-input"
+    id="sugu-input"
     type="search"
     autocomplete="off"
-    class="somni-search-input"
+    class="sugu-search-input"
     placeholder="Type away"
     bind:value={searchValue}
     on:input={(e) => debounce(handleSearchInput(e))}
@@ -34,7 +34,7 @@
 </div>
 
 <style>
-  .somni-search-input {
+  .sugu-search-input {
     background: transparent;
     border: 0px;
     outline: none;
@@ -51,15 +51,15 @@
     box-sizing: border-box;
   }
 
-  .somni-search-input::placeholder {
+  .sugu-search-input::placeholder {
     color: var(--placeholder);
     opacity: 1;
   }
 
-  .somni-search-input::-webkit-search-decoration,
-  .somni-search-input::-webkit-search-cancel-button,
-  .somni-search-input::-webkit-search-results-button,
-  .somni-search-input::-webkit-search-results-decoration {
+  .sugu-search-input::-webkit-search-decoration,
+  .sugu-search-input::-webkit-search-cancel-button,
+  .sugu-search-input::-webkit-search-results-button,
+  .sugu-search-input::-webkit-search-results-decoration {
     display: none;
   }
 </style>

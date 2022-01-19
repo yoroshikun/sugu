@@ -16,7 +16,7 @@
 </script>
 
 <div
-  id="somni-item-{action.title.toLowerCase().split(' ').join('-')}"
+  id="sugu-item-{action.title.toLowerCase().split(' ').join('-')}"
   class="item"
   class:item-active={isSelected}
   data-type={action.type}
@@ -158,6 +158,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 350px;
     width: 100%;
   }
 

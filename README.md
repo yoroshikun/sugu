@@ -1,11 +1,8 @@
-# SOmni Search
+# Sugu Search
 
 > Disclaimer: This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) more disclaimer below in the [Disclaimer](#disclaimer) section.
 
-Supercharge your browser workflow with SOmni Search. 
-
-<!-- [👉 Get it now](https://chrome.google.com/webstore/detail/omni/mapjgeachilmcbbokkgcbgpbakaaeehi?hl=en&authuser=0) -->
-
+Instant spotlight like search and actions with Sugu Search. 
 
 Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X](https://alyssax.com)s [Omni](https://github.com/alyssaxuu/omni)
 
@@ -13,8 +10,8 @@ Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X]
 
 - [Features](#features)
 - [Controlling the interface](#controlling-the-interface)
-  - [Opening SOmni](#opening-somni)
-  - [Closing SOmni](#closing-somni)
+  - [Opening Sugu](#opening-sugu)
+  - [Closing Sugu](#closing-sugu)
   - [Switching between dark and light mode](#switching-between-dark-and-light-mode)
 - [List of commands](#list-of-commands)
 - [Developer contribution guide](#developer-contribution-guide)
@@ -23,6 +20,7 @@ Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X]
 ## Features
 
 - ⚡️ Blazing fast and lightweight UX
+- 💅 Modern Fluid UI
 - 🗂 Tab management
 - 📚 Bookmarks management
 - ⌨ Keyboard shortcuts
@@ -35,19 +33,19 @@ Much more not listed...
 
 ## Controlling the interface
 
-### Opening SOmni
+### Opening Sugu
 
-To open SOmni, simply press `⌘+K` on Mac or `Ctrl+K` on Windows. You can change the shortcut by going to chrome://extensions/shortcuts.
+To open Sugu, simply press `⌘+Shift+K` on Mac or `Ctrl+Shift+K` on Windows. You can change the shortcut by going to chrome://extensions/shortcuts.
 
 Alternatively you can click on the extension icon in the toolbar to toggle it.
 
-### Closing SOmni
+### Closing Sugu
 
-To close SOmni you can press `Esc`, click on the background, or press the extension icon.
+To close Sugu you can press `Esc`, click on the background, or press the extension icon.
 
 ### Switching between dark and light mode
 
-The dark and light theme in SOmni is currently tied to your system's theme.
+The dark and light theme in Sugu is currently tied to your system's theme.
 
 On Mac you can change the theme by clicking on the Apple menu (on the top left), opening the System preferences, going into the General section, and then choosing between dark, light, or auto.
 
@@ -57,7 +55,7 @@ After switching the theme you might need to restart Chrome.
 
 ## List of commands
 
-You can use a variety of commands with SOmni to perform actions or filter your results.
+You can use a variety of commands with Sugu to perform actions or filter your results.
 
 - **/tabs**: Search your tabs
 - **/bookmarks**: Search your bookmarks
@@ -89,16 +87,21 @@ yarn build
 ```
 All required files will be copied to the `dist` folder.
 
+### Running Locally
+
+TBA
+
 ## Special Thanks
 
 - [Svelte](https://svelte.dev/) - Cybernetically Enhanced Web Apps
 - [Omni](https://github.com/alyssaxuu/omni) - Alyssa X's Original Omni Chrome Extension
+- [whats.new](https://whats.new/) - Amazing resource for url as shortcuts
 
 ## Disclaimer
 
 ### Acknowledgments
 
-This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) by Alyssa X. This project was originally developed to be a alternative JQuery-less version of Omni, but due to the scope of changes and rewrites the project has become its own development. The project is offered with the same MIT license so that people are free to take optimizations and implement them back into Omni if wanted.
+This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) by Alyssa X. This project was originally developed to be a alternative JQuery-less version of Omni, but due to the scope of changes and rewrites the project has become its own development. The project is offered with the same MIT license so that people are free to take optimizations and implement them back into Omni if wanted, but I highly recommend you checkout and help this project develop further.
 
 ## Contact
 
