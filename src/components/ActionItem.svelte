@@ -34,6 +34,13 @@
         alt={action.title}
       />
     {/if}
+    {#if !action.favIconUrl && !action.emoji}
+      <img
+        class="icon"
+        src={chrome.runtime.getURL("icons/globe.svg")}
+        alt={action.title}
+      />
+    {/if}
     <div class="item-details">
       <div class="item-name">
         {action.title}

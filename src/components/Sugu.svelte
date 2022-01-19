@@ -165,9 +165,6 @@
             {#if item}
               <ActionItem on:handleClick={handleClick} action={item} />
             {/if}
-            <!-- {#each truncatedActions as action}
-            <ActionItem on:handleClick={handleClick} {action} />
-          {/each} -->
           </VirtualList>
         </div>
         <Footer {results} />
