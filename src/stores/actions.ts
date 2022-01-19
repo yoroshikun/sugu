@@ -37,8 +37,6 @@ const createActions = () => {
           );
         });
 
-        console.log(filteredActions);
-
         return {
           actions: prev.actions,
           filteredActions,
@@ -111,7 +109,7 @@ const createActions = () => {
         }
 
         const element = document.querySelector(
-          `#sugu-item-${newAction.title.toLowerCase().split(" ").join("-")}`
+          `#sugu-item-${newAction.title.toLowerCase().split(" ").join("-")}` // This is a bug and can be better
         );
         const scrollParent = getScrollParent(element);
         const scrollOffset = offset > 0 ? -527 : -273; // Odd numbers to make it harder to get locked
@@ -132,7 +130,6 @@ const createActions = () => {
       });
     },
     selectAction: (action: Action) => {
-      console.log("Selecting action: ", action);
       update((prev) => {
         return {
           actions: prev.actions,

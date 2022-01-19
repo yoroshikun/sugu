@@ -143,19 +143,19 @@
 {#if isOpen}
   <div>
     <div
-      class="overlay"
+      class="sugu-overlay"
       in:fade={{ duration: 125, easing: cubicIn }}
       out:fade={{ duration: 125, easing: cubicIn }}
       on:click={() => closeSugu()}
     />
-    <div class="wrapper">
+    <div class="sugu-wrapper">
       <div
-        class="inner"
+        class="sugu-inner"
         in:fly={{ y: 40, duration: 325, easing: cubicIn }}
         out:fly={{ y: -40, duration: 325, easing: cubicIn }}
       >
         <SearchBar />
-        <div class="list">
+        <div class="sugu-list">
           <VirtualList
             items={filteredActions}
             height={`${listHeight}px`}
@@ -166,6 +166,12 @@
               <ActionItem on:handleClick={handleClick} action={item} />
             {/if}
           </VirtualList>
+          {#if results === 0}
+            <div class="sugu-no-results">
+              <div class="sugu-highlight-tick" />
+              No results with this query, wanna try something else?
+            </div>
+          {/if}
         </div>
         <Footer {results} />
       </div>
@@ -176,32 +182,32 @@
 <style>
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: #1e2128;
-      --border: #35373e;
-      --text: #f1f1f1;
-      --text-2: #c5c6ca;
-      --text-3: #a5a5ae;
-      --select: #17191e;
-      --accent: #6068d2;
-      --accent-hover: #484fac;
-      --shortcut: #383e4a;
-      --placeholder: #63687b;
-      --background-2: #292d36;
+      --background-sugu: #1e2128;
+      --border-sugu: #35373e;
+      --text-sugu: #f1f1f1;
+      --text-sugu-2: #c5c6ca;
+      --text-sugu-3: #a5a5ae;
+      --select-sugu: #2e323c;
+      --accent-sugu: #6068d2;
+      --accent-sugu-hover: #484fac;
+      --shortcut-sugu: #4b4f5c;
+      --placeholder-sugu: #63687b;
+      --background-sugu-2: #292d36;
     }
   }
   @media (prefers-color-scheme: light) {
     :root {
-      --background: #fafcff;
-      --border: #f2f3fb;
-      --text: #2b2d41;
-      --text-2: #2b2d41;
-      --text-3: #929db2;
-      --select: #eff3f9;
-      --accent: #6068d2;
-      --accent-hover: #484fac;
-      --shortcut: #dadeea;
-      --placeholder: #bac2d1;
-      --background-2: #292d36;
+      --background-sugu: #fafcff;
+      --border-sugu: #f2f3fb;
+      --text-sugu: #2b2d41;
+      --text-sugu-2: #2b2d41;
+      --text-sugu-3: #929db2;
+      --select-sugu: #eff3f9;
+      --accent-sugu: #6068d2;
+      --accent-sugu-hover: #484fac;
+      --shortcut-sugu: #dadeea;
+      --placeholder-sugu: #bac2d1;
+      --background-sugu-2: #292d36;
     }
   }
 
@@ -233,7 +239,7 @@
     src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.ttf");
   }
 
-  .overlay {
+  .sugu-overlay {
     height: 100vh;
     width: 100vw;
     position: fixed;
@@ -244,7 +250,7 @@
     opacity: 0.7;
   }
 
-  .wrapper {
+  .sugu-wrapper {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -257,12 +263,10 @@
     z-index: 9999999999; /* Very high z-index */
   }
 
-  .inner {
+  .sugu-inner {
     display: block;
     position: relative;
     width: 70vw;
-    background: var(--background);
-    border: 1px solid var(--border);
     font-family: "OpenSans", sans-serif;
     border-radius: 5px;
     top: 0;
@@ -270,10 +274,35 @@
     z-index: 9999999998;
   }
 
-  .list {
-    overflow: auto;
-    width: 100%;
+  .sugu-list {
+    background: var(--background-sugu);
+    padding: 0.25rem;
+    border-radius: 1rem;
+    width: cacl(100% - 0.5rem);
     max-height: 400px;
-    border-top: 1px solid var(--border);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+
+  .sugu-no-results {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    color: var(--text-sugu-3);
+    font-size: 0.75rem;
+  }
+
+  .sugu-highlight-tick {
+    display: block;
+    top: 0.4rem;
+    left: -0.25rem;
+    height: 14px;
+    content: "";
+    width: 0.4rem;
+    border-radius: 0.3rem;
+    background-color: var(--accent-sugu);
+    margin-right: 0.5rem;
+    margin-top: 2px;
   }
 </style>
