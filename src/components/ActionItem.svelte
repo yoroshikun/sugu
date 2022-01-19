@@ -17,61 +17,62 @@
 
 <div
   id="sugu-item-{action.title.toLowerCase().split(' ').join('-')}"
-  class="item"
-  class:item-active={isSelected}
+  class="sugu-item"
+  class:sugu-item-active={isSelected}
   data-type={action.type}
   data-url={action.url}
   on:click={() => handleClick(action)}
 >
-  <div class="left">
+  <div class="sugu-left">
     {#if action.emoji}
       <span class="emoji-action">{action.emojiChar}</span>
     {/if}
     {#if action.favIconUrl}
       <img
-        class="icon"
+        class="sugu-icon"
         src={action.favIconUrl || chrome.runtime.getURL("icons/globe.svg")}
         alt={action.title}
       />
     {/if}
     {#if !action.favIconUrl && !action.emoji}
       <img
-        class="icon"
+        class="sugu-icon"
         src={chrome.runtime.getURL("icons/globe.svg")}
         alt={action.title}
       />
     {/if}
-    <div class="item-details">
-      <div class="item-name">
+    <div class="sugu-item-details">
+      <div class="sugu-item-name">
         {action.title}
       </div>
-      <div class="item-desc">
+      <div class="sugu-item-desc">
         {action.desc}
       </div>
     </div>
   </div>
-  <div class="right">
+  <div class="sugu-right">
     {#if action.showKeys}
-      <div class="keys">
+      <div class="sugu-keys">
         {#each action.keys as key}
-          <span class="shortcut">{key}</span>
+          <span class="sugu-sugu">{key}</span>
         {/each}
       </div>
     {/if}
-    <span class="shortcut select"> ⏎ </span>
+    <span class="sugu-sugu sugu-select"> ⏎ </span>
   </div>
 </div>
 
 <style>
-  .item {
+  .sugu-item {
     display: flex;
     position: relative;
     justify-content: space-between;
     min-height: 60px;
-    width: 100%;
+    width: calc(100% - 0.5rem);
+    border-radius: 1rem;
   }
 
-  .right {
+  .sugu-right {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -79,7 +80,7 @@
     padding: 0.5rem 1rem;
   }
 
-  .left {
+  .sugu-left {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -87,63 +88,80 @@
     padding: 0.5rem 0;
   }
 
-  .item:hover {
-    background-color: var(--select);
+  .sugu-item:hover {
+    background-color: var(--sugu-select-sugu);
     cursor: pointer;
   }
 
-  .item:hover::before {
-    height: 100%;
+  .sugu-item::before {
     position: absolute;
     display: block;
+    top: 1rem;
+    left: 0.5rem;
+    height: 28px;
     content: "";
-    width: 2px;
-    background-color: var(--accent);
+    width: 0.4rem;
+    border-radius: 0.3rem;
+    background-color: var(--accent-sugu);
+    opacity: 0;
+    transition: all 0.175s ease-in;
   }
 
-  .item:hover .select {
+  .sugu-item:hover::before {
+    opacity: 1;
+    left: 1rem;
+  }
+
+  .sugu-item:hover .sugu-select {
     display: block;
   }
 
-  .item:hover .keys {
+  .sugu-item:hover .sugu-keys {
     display: none;
   }
 
-  .item .select {
+  .sugu-item:hover .sugu-icon,
+  .sugu-item:hover .emoji-action {
+    margin-left: 2.5rem;
+  }
+
+  .sugu-item .sugu-select {
     display: none;
   }
 
-  .item .keys {
+  .sugu-item .sugu-keys {
     display: block;
   }
 
-  .item-active {
-    background-color: var(--select);
+  .sugu-item-active {
+    background-color: var(--sugu-select-sugu);
     position: relative;
   }
 
-  .item-active:before {
-    height: 100%;
-    position: absolute;
-    display: block;
-    content: "";
-    width: 2px;
-    background-color: var(--accent);
+  .sugu-item-active.sugu-item::before {
+    opacity: 1;
+    left: 1rem;
   }
 
-  .item-active .select {
+  .sugu-item-active .sugu-select {
     display: block;
   }
 
-  .item-active .keys {
+  .sugu-item-active .sugu-keys {
     display: none;
   }
 
-  .icon {
+  .sugu-item-active .sugu-icon,
+  .sugu-item-active .emoji-action {
+    margin-left: 2.5rem;
+  }
+
+  .sugu-icon {
     width: 1.5rem;
     height: 1.5rem;
     margin-left: 1rem;
-    margin-top: -0.5rem;
+    margin-top: -0.25rem;
+    transition: margin-left 0.175s ease-in;
   }
 
   .emoji-action {
@@ -151,15 +169,16 @@
     width: 1.5rem;
     height: 1.5rem;
     margin-left: 1rem;
-    margin-top: -0.5rem;
+    margin-top: -0.25rem;
+    transition: margin-left 0.175s ease-in;
   }
 
-  .item-details {
+  .sugu-item-details {
     margin-left: 0.75rem;
   }
 
-  .item-name {
-    color: var(--text-2);
+  .sugu-item-name {
+    color: var(--text-sugu-2);
     font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
@@ -169,22 +188,22 @@
     width: 100%;
   }
 
-  .item-active .item-name {
-    color: var(--text) !important;
+  .sugu-item-active .sugu-item-name {
+    color: var(--text-sugu) !important;
   }
 
-  .item-desc {
-    color: var(--text-3);
+  .sugu-item-desc {
+    color: var(--text-sugu-3);
     margin-top: 0.25rem;
     font-size: 0.8rem;
   }
 
-  .shortcut {
+  .sugu-sugu {
     display: inline-block;
     font-size: 0.6rem;
     border-radius: 0.25rem;
-    background-color: var(--shortcut);
-    color: var(--text);
+    background-color: var(--sugu-sugu-sugu);
+    color: var(--text-sugu);
     text-align: center;
     height: 1.25rem;
     line-height: 1.25rem;

@@ -6,6 +6,8 @@ export interface SearchData {
   command: string | null;
 }
 
+const validCommands = ["tabs", "bookmarks", "history", "actions", "remove"];
+
 const createSearch = () => {
   const { subscribe, set, update } = writable<SearchData>({
     previous: "",
@@ -22,10 +24,12 @@ const createSearch = () => {
           return prev;
         }
 
-        if (value.endsWith(" ")) {
+        if (value.startsWith("/") && value.endsWith(" ")) {
           const currentCommand = value.trim().toLowerCase().replace("/", "");
-          enteredCommandMode = true;
-          return { previous: "", current: "", command: currentCommand };
+          if (validCommands.includes(currentCommand)) {
+            enteredCommandMode = true;
+            return { previous: "", current: "", command: currentCommand };
+          }
         }
 
         return {

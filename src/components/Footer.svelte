@@ -2,33 +2,47 @@
   export let results: number = 0;
 </script>
 
-<div class="footer">
-  <div class="results">{results} result{results === 1 ? "" : "s"}</div>
-  <div class="arrows">
-    Use arrow keys <span class="shortcut">↑</span><span class="shortcut">↓</span
-    > to navigate
+<div class="sugu-footer">
+  <div class="sugu-results">{results} result{results === 1 ? "" : "s"}</div>
+  <div>
+    <div class="sugu-instructions">
+      Use arrow keys <span class="sugu-shortcut">↑</span><span
+        class="sugu-shortcut">↓</span
+      > to navigate
+    </div>
+    <div class="sugu-settings" />
   </div>
 </div>
 
 <style>
-  .footer {
+  .sugu-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
-    border-top: 1px solid var(--border);
-    margin: 0 1rem;
-    color: var(--text-3);
+    color: var(--text-sugu-3);
     font-size: 0.75rem;
     font-weight: 500;
   }
 
-  .shortcut {
+  .sugu-results {
+    padding: 0.75rem 1rem;
+    background: var(--background-sugu);
+    border-radius: 1rem;
+  }
+
+  .sugu-instructions {
+    margin-right: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--background-sugu);
+    border-radius: 1rem;
+  }
+
+  .sugu-shortcut {
     display: inline-block;
     font-size: 0.6rem;
     border-radius: 0.25rem;
-    background-color: var(--shortcut);
-    color: var(--text);
+    background-color: var(--shortcut-sugu);
+    color: var(--text-sugu);
     text-align: center;
     height: 1.25rem;
     line-height: 1.25rem;
