@@ -23,3 +23,9 @@ const addSuguListener = (message) => {
 };
 
 chrome.runtime.onMessage.addListener(addSuguListener);
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.href.endsWith("/sugu-new.html")) {
+    suguApp = initSugu();
+  }
+});

@@ -25,6 +25,11 @@
   // Helpers
   const closeSugu = () => {
     isOpen = false;
+
+    // if in the temp tab we destroy the tab
+    if (window.location.href.endsWith("/sugu-new.html")) {
+      window.close();
+    }
   };
 
   const openSugu = () => {
@@ -238,6 +243,31 @@
     font-style: normal;
     font-weight: 700;
     src: url("chrome-extension://__MSG_@@extension_id__/fonts/OpenSans-Bold.ttf");
+  }
+
+  /* These seem not work with the virtual list */
+  .sugu-search ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    transition: 0.275s;
+  }
+
+  .sugu-search ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .sugu-search ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
+  .sugu-search ::-webkit-scrollbar-thumb:vertical:hover,
+  .sugu-search ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba(161, 96, 210, 1);
+  }
+
+  .sugu-search ::-webkit-scrollbar-thumb:vertical:active,
+  .sugu-search ::-webkit-scrollbar-thumb:horizontal:active {
+    background-color: rgba(161, 96, 210, 1);
   }
 
   .sugu-overlay {
