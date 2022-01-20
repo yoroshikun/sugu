@@ -38,18 +38,15 @@
 <style>
   .sugu-search-input {
     display: block;
-    box-sizing: content-box;
     background: transparent;
     border: 0px;
     outline: none;
-    font-size: 1.4rem;
+    font-size: 1.4em;
     font-weight: 400;
-    height: 3rem;
-    width: calc(100% - 2.25rem);
+    height: 3em;
+    width: 100%;
     color: var(--text-sugu);
     caret-color: var(--accent-sugu);
-    margin: 1rem;
-    box-sizing: border-box;
   }
 
   .sugu-search-input::placeholder {
@@ -65,7 +62,7 @@
   }
 
   .sugu-command {
-    font-size: 1.4rem;
+    font-size: 1.4em;
     font-weight: 400;
     color: var(--placeholder-sugu);
   }
@@ -77,10 +74,10 @@
     align-items: center;
     justify-content: flex-start;
     height: 3rem;
-    width: calc(100% - 1.75rem);
-    padding: 0.75rem;
+    width: 100%;
+    padding: 1.75em;
     background: var(--background-sugu);
     border: 1px solid var(--border-sugu);
-    border-radius: 1rem;
+    border-radius: 1em;
   }
 </style>

@@ -20,34 +20,31 @@
     justify-content: space-between;
     align-items: center;
     color: var(--text-sugu-3);
-    font-size: 0.75rem;
+    font-size: 0.75em;
     font-weight: 500;
   }
 
   .sugu-results {
-    padding: 0.75rem 1rem;
+    padding: 0.75em 1em;
     background: var(--background-sugu);
-    border-radius: 1rem;
+    border-radius: 1em;
   }
 
   .sugu-instructions {
-    margin-right: 0.5rem;
-    padding: 0.75rem 1rem;
+    margin-right: 0.5em;
+    padding: 0.75em 1em;
     background: var(--background-sugu);
-    border-radius: 1rem;
+    border-radius: 1em;
   }
 
   .sugu-shortcut {
     display: inline-block;
-    font-size: 0.6rem;
-    border-radius: 0.25rem;
+    font-size: 0.6em;
+    border-radius: 0.25em;
     background-color: var(--shortcut-sugu);
     color: var(--text-sugu);
     text-align: center;
-    height: 1.25rem;
-    line-height: 1.25rem;
-    min-width: 1.5rem;
-    margin: 0 0.25rem;
-    padding: 0 0.25rem;
+    padding: 0.25em 0.5em;
+    margin-left: 0.5em;
   }
 </style>
