@@ -3,8 +3,7 @@ export interface Action {
   desc: string;
   type: "action" | "history" | "tab" | "bookmark";
   action: string;
-  emoji?: boolean;
-  emojiChar?: string;
+  icon?: string;
   url?: string;
   showKeys?: boolean;
   keys?: string[];

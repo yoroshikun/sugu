@@ -2,6 +2,7 @@
   import type { Action } from "../actions/types";
 
   import { createEventDispatcher } from "svelte";
+  import { Globe } from "../actions/icons/fluidui";
   import { actions } from "../stores/actions";
 
   export let action: Action;
@@ -24,22 +25,14 @@
   on:click={() => handleClick(action)}
 >
   <div class="sugu-left">
-    {#if action.emoji}
-      <span class="emoji-action">{action.emojiChar}</span>
+    {#if action.icon}
+      <span class="sugu-icon sugu-svg">{@html action.icon}</span>
     {/if}
     {#if action.favIconUrl}
-      <img
-        class="sugu-icon"
-        src={action.favIconUrl || chrome.runtime.getURL("icons/globe.svg")}
-        alt={action.title}
-      />
+      <img class="sugu-icon" src={action.favIconUrl} alt={action.title} />
     {/if}
-    {#if !action.favIconUrl && !action.emoji}
-      <img
-        class="sugu-icon"
-        src={chrome.runtime.getURL("icons/globe.svg")}
-        alt={action.title}
-      />
+    {#if !action.favIconUrl && !action.icon}
+      <span class="sugu-icon sugu-svg">{@html Globe}</span>
     {/if}
     <div class="sugu-item-details">
       <div class="sugu-item-name">
@@ -120,9 +113,8 @@
     display: none;
   }
 
-  .sugu-item:hover .sugu-icon,
-  .sugu-item:hover .emoji-action {
-    margin-left: 2.5em;
+  .sugu-item:hover .sugu-icon {
+    margin-left: 2em;
   }
 
   .sugu-item .sugu-select {
@@ -151,25 +143,15 @@
     display: none;
   }
 
-  .sugu-item-active .sugu-icon,
-  .sugu-item-active .emoji-action {
-    margin-left: 2.5em;
+  .sugu-item-active .sugu-icon {
+    margin-left: 2em;
   }
 
   .sugu-icon {
     width: 1.5em;
     height: 1.5em;
-    margin-left: 1em;
-    margin-top: -0.25em;
-    transition: margin-left 0.175s ease-in;
-  }
-
-  .emoji-action {
-    font-size: 18px;
-    width: 1.5em;
-    height: 1.5em;
-    margin-left: 1em;
-    margin-top: -0.25em;
+    margin-left: 0.75em;
+    margin-top: -2px;
     transition: margin-left 0.175s ease-in;
   }
 
@@ -186,6 +168,10 @@
     text-overflow: ellipsis;
     max-width: 350px;
     width: 100%;
+  }
+
+  .sugu-svg {
+    fill: var(--accent-sugu);
   }
 
   .sugu-item-active .sugu-item-name {

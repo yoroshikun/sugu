@@ -7,6 +7,7 @@ import css from "rollup-plugin-css-only";
 import svelte from "rollup-plugin-svelte";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
+import inlineSvg from "rollup-plugin-inline-svg";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -48,6 +49,15 @@ function createConfig(filename, useSvelte = false) {
       commonjs(),
       typescript({
         rootDir: "./src",
+      }),
+
+      inlineSvg({
+        removeTags: false,
+        warnTags: [],
+        removingTags: ["title", "desc", "defs", "style"],
+        removeSVGTagAttrs: true,
+        removingTagAttrs: [],
+        warnTagAttrs: [],
       }),
 
       // If we're building for production (npm run build

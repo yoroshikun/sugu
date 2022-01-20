@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Search } from "../actions/icons/fluidui";
+
   import debounce from "../helpers/debounce";
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
@@ -19,6 +21,9 @@
 </script>
 
 <div class="sugu-input-container">
+  <div class="sugu-search-icon">
+    {@html Search}
+  </div>
   {#if $search.command}
     <div class="sugu-command">
       /{$search.command}
@@ -36,6 +41,13 @@
 </div>
 
 <style>
+  .sugu-search-icon {
+    fill: var(--accent-sugu);
+    width: 2em;
+    height: 2em;
+    margin-left: -1em;
+    margin-right: 0.5em;
+  }
   .sugu-search-input {
     display: block;
     background: transparent;
@@ -63,11 +75,12 @@
 
   .sugu-command {
     font-size: 1.4em;
-    font-weight: 400;
+    font-weight: 300;
     color: var(--placeholder-sugu);
   }
 
   .sugu-input-container {
+    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: row;
