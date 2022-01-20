@@ -137,6 +137,8 @@ const closeWindow = async (id: number) => await chrome.windows.remove(id);
 const closeTab = async (tab: chrome.tabs.Tab) =>
   await chrome.tabs.remove(tab.id);
 
+const closeCurrentTab = async () => closeTab(await getCurrentTab());
+
 const removeBookmark = async (bookmark: { id: string }) =>
   await chrome.bookmarks.remove(bookmark.id);
 
@@ -216,6 +218,8 @@ const handleAction = async (message, sender, sendResponse): Promise<any> => {
       return openIncognito();
     case "close-window":
       return closeWindow(sender.tab.windowId);
+    case "close-current-tab":
+      return closeCurrentTab();
     case "search-history":
       const newActions = searchHistory(message.query);
       return sendResponse({ history: newActions });

@@ -31,6 +31,7 @@
     isOpen = true;
 
     actions.reset();
+    search.reset();
 
     // Autofocus on search input
     setTimeout(() => {

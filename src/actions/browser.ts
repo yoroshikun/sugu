@@ -13,8 +13,6 @@ const scrollToBottom = () => window.scrollTo(0, document.body.scrollHeight);
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
-const closeTab = () => window.close();
-
 const openFullscreen = () => document.documentElement.requestFullscreen();
 
 const newTab = () => window.open("");
@@ -29,8 +27,6 @@ const handleAction = (action: Action, event?: KeyboardEvent) => {
       return scrollToBottom();
     case "scroll-top":
       return scrollToTop();
-    case "close-tab":
-      return closeTab();
     case "navigation":
       return navigate(action.url, event);
     case "fullscreen":

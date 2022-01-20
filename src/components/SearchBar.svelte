@@ -75,8 +75,10 @@
 
   .sugu-command {
     font-size: 1.4em;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--placeholder-sugu);
+    margin-top: -4px;
+    margin-right: 0.5em;
   }
 
   .sugu-input-container {

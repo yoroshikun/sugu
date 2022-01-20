@@ -217,7 +217,7 @@ const actions: Action[] = [
     title: "Close tab",
     desc: "Close the current tab",
     type: "action",
-    action: "close-tab",
+    action: "close-current-tab",
     icon: TrayItemRemove,
     showKeys: true,
     keys: ["⌘", "W"],
