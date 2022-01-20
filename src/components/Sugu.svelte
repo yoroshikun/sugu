@@ -141,7 +141,7 @@
 <svelte:window on:keydown={handleInteraction} />
 
 {#if isOpen}
-  <div>
+  <div class="sugu-search">
     <div
       class="sugu-overlay"
       in:fade={{ duration: 125, easing: cubicIn }}
@@ -181,7 +181,7 @@
 
 <style>
   @media (prefers-color-scheme: dark) {
-    :root {
+    .sugu-search {
       --background-sugu: #1e2128;
       --border-sugu: #35373e;
       --text-sugu: #f1f1f1;
@@ -196,7 +196,7 @@
     }
   }
   @media (prefers-color-scheme: light) {
-    :root {
+    .sugu-search {
       --background-sugu: #fafcff;
       --border-sugu: #f2f3fb;
       --text-sugu: #2b2d41;
@@ -259,16 +259,17 @@
     height: 100vh;
     top: 0;
     right: 0;
-    padding-top: 8rem;
+    padding-top: 140px;
     z-index: 9999999999; /* Very high z-index */
   }
 
   .sugu-inner {
     display: block;
     position: relative;
+    font-size: 16px;
     width: 70vw;
     font-family: "OpenSans", sans-serif;
-    border-radius: 5px;
+    border-radius: 8px;
     top: 0;
     left: 0;
     z-index: 9999999998;
@@ -276,33 +277,33 @@
 
   .sugu-list {
     background: var(--background-sugu);
-    padding: 0.25rem;
-    border-radius: 1rem;
-    width: cacl(100% - 0.5rem);
+    padding: 0.25em;
+    border-radius: 1em;
+    width: calc(100% - 0.5em);
     max-height: 400px;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
     overflow: hidden;
   }
 
   .sugu-no-results {
     display: flex;
     flex-direction: row;
-    padding: 1rem;
+    padding: 1em;
     color: var(--text-sugu-3);
-    font-size: 0.75rem;
+    font-size: 0.75em;
   }
 
   .sugu-highlight-tick {
     display: block;
-    top: 0.4rem;
-    left: -0.25rem;
+    top: 0.4em;
+    left: -0.25em;
     height: 14px;
     content: "";
-    width: 0.4rem;
-    border-radius: 0.3rem;
+    width: 0.4em;
+    border-radius: 0.3em;
     background-color: var(--accent-sugu);
-    margin-right: 0.5rem;
+    margin-right: 0.5em;
     margin-top: 2px;
   }
 </style>

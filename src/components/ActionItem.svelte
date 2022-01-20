@@ -54,11 +54,11 @@
     {#if action.showKeys}
       <div class="sugu-keys">
         {#each action.keys as key}
-          <span class="sugu-sugu">{key}</span>
+          <span class="sugu-key">{key}</span>
         {/each}
       </div>
     {/if}
-    <span class="sugu-sugu sugu-select"> ⏎ </span>
+    <span class="sugu-key sugu-select"> ⏎ </span>
   </div>
 </div>
 
@@ -68,8 +68,8 @@
     position: relative;
     justify-content: space-between;
     min-height: 60px;
-    width: calc(100% - 0.5rem);
-    border-radius: 1rem;
+    width: calc(100% - 0.5em);
+    border-radius: 1em;
   }
 
   .sugu-right {
@@ -77,7 +77,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.5em 1em;
   }
 
   .sugu-left {
@@ -85,23 +85,23 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: 0.5em 0;
   }
 
   .sugu-item:hover {
-    background-color: var(--sugu-select-sugu);
+    background-color: var(--select-sugu);
     cursor: pointer;
   }
 
   .sugu-item::before {
     position: absolute;
     display: block;
-    top: 1rem;
-    left: 0.5rem;
+    top: 1em;
+    left: 0.5em;
     height: 28px;
     content: "";
-    width: 0.4rem;
-    border-radius: 0.3rem;
+    width: 0.4em;
+    border-radius: 0.3em;
     background-color: var(--accent-sugu);
     opacity: 0;
     transition: all 0.175s ease-in;
@@ -109,7 +109,7 @@
 
   .sugu-item:hover::before {
     opacity: 1;
-    left: 1rem;
+    left: 1em;
   }
 
   .sugu-item:hover .sugu-select {
@@ -122,7 +122,7 @@
 
   .sugu-item:hover .sugu-icon,
   .sugu-item:hover .emoji-action {
-    margin-left: 2.5rem;
+    margin-left: 2.5em;
   }
 
   .sugu-item .sugu-select {
@@ -134,13 +134,13 @@
   }
 
   .sugu-item-active {
-    background-color: var(--sugu-select-sugu);
+    background-color: var(--select-sugu);
     position: relative;
   }
 
   .sugu-item-active.sugu-item::before {
     opacity: 1;
-    left: 1rem;
+    left: 1em;
   }
 
   .sugu-item-active .sugu-select {
@@ -153,33 +153,33 @@
 
   .sugu-item-active .sugu-icon,
   .sugu-item-active .emoji-action {
-    margin-left: 2.5rem;
+    margin-left: 2.5em;
   }
 
   .sugu-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 1rem;
-    margin-top: -0.25rem;
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 1em;
+    margin-top: -0.25em;
     transition: margin-left 0.175s ease-in;
   }
 
   .emoji-action {
     font-size: 18px;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 1rem;
-    margin-top: -0.25rem;
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 1em;
+    margin-top: -0.25em;
     transition: margin-left 0.175s ease-in;
   }
 
   .sugu-item-details {
-    margin-left: 0.75rem;
+    margin-left: 0.75em;
   }
 
   .sugu-item-name {
     color: var(--text-sugu-2);
-    font-size: 0.8rem;
+    font-size: 0.8em;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -194,18 +194,18 @@
 
   .sugu-item-desc {
     color: var(--text-sugu-3);
-    margin-top: 0.25rem;
-    font-size: 0.8rem;
+    margin-top: 0.25em;
+    font-size: 0.8em;
   }
 
-  .sugu-sugu {
+  .sugu-key {
     display: inline-block;
-    font-size: 0.6rem;
-    border-radius: 0.25rem;
-    background-color: var(--sugu-sugu-sugu);
+    font-size: 0.6em;
+    border-radius: 0.25em;
+    background-color: var(--shortcut-sugu);
     color: var(--text-sugu);
     text-align: center;
-    height: 1.25rem;
-    line-height: 1.25rem;
+    padding: 0.25em 0.5em;
+    margin-left: 0.5em;
   }
 </style>
