@@ -12,7 +12,7 @@ export const getTabs = () => {
       for (const tab of tabs) {
         newActions.push({
           title: tab.title,
-          desc: "Chrome tab",
+          description: "Chrome tab",
           showKeys: false,
           action: "switch-tab",
           type: "tab",
@@ -33,7 +33,7 @@ export const getBookmarks = () => {
       if (bookmark.url) {
         newActions.push({
           title: bookmark.title,
-          desc: bookmark.url,
+          description: bookmark.url,
           bookmarkId: bookmark.id,
           url: bookmark.url,
           type: "bookmark",
@@ -155,7 +155,7 @@ const searchHistory = (query) => {
       for (const action of data) {
         newActions.push({
           title: action.title,
-          desc: action.url,
+          description: action.url,
           type: "history",
           action: "history",
           icon: History,

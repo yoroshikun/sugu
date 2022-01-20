@@ -39,7 +39,7 @@
         {action.title}
       </div>
       <div class="sugu-item-desc">
-        {action.desc}
+        {action.description}
       </div>
     </div>
   </div>

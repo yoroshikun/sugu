@@ -37,7 +37,7 @@ import {
 const actions: Action[] = [
   {
     title: "Mute tab",
-    desc: "Mute the current tab",
+    description: "Mute the current tab",
     type: "action",
     action: "mute",
     icon: Mute,
@@ -46,7 +46,7 @@ const actions: Action[] = [
   },
   {
     title: "Unmute tab",
-    desc: "Unmute the current tab",
+    description: "Unmute the current tab",
     type: "action",
     action: "unmute",
     icon: Speaker2,
@@ -55,7 +55,7 @@ const actions: Action[] = [
   },
   {
     title: "Pin tab",
-    desc: "Pin the current tab",
+    description: "Pin the current tab",
     type: "action",
     action: "pin",
     icon: Pin,
@@ -64,7 +64,7 @@ const actions: Action[] = [
   },
   {
     title: "Unpin tab",
-    desc: "Unpin the current tab",
+    description: "Unpin the current tab",
     type: "action",
     action: "unpin",
     icon: PinOff,
@@ -73,7 +73,7 @@ const actions: Action[] = [
   },
   {
     title: "New tab",
-    desc: "Open a new tab",
+    description: "Open a new tab",
     type: "action",
     action: "new-tab",
     icon: Sparkle,
@@ -82,7 +82,7 @@ const actions: Action[] = [
   },
   {
     title: "Bookmark",
-    desc: "Create a bookmark",
+    description: "Create a bookmark",
     type: "action",
     action: "create-bookmark",
     icon: BookmarkAdd,
@@ -91,7 +91,7 @@ const actions: Action[] = [
   },
   {
     title: "Fullscreen",
-    desc: "Make the page fullscreen",
+    description: "Make the page fullscreen",
     type: "action",
     action: "fullscreen",
     icon: FullScreenMaximize,
@@ -100,7 +100,7 @@ const actions: Action[] = [
   },
   {
     title: "Reload",
-    desc: "Reload the page",
+    description: "Reload the page",
     type: "action",
     action: "reload",
     icon: ArrowClockwise,
@@ -109,7 +109,7 @@ const actions: Action[] = [
   },
   {
     title: "Help",
-    desc: "Get help with Sugu on GitHub",
+    description: "Get help with Sugu on GitHub",
     type: "action",
     action: "url",
     url: "https://github.com/yoroshikun/sugu-search",
@@ -117,7 +117,7 @@ const actions: Action[] = [
   },
   {
     title: "Compose email",
-    desc: "Compose a new email",
+    description: "Compose a new email",
     type: "action",
     action: "email",
     icon: MailAdd,
@@ -126,7 +126,7 @@ const actions: Action[] = [
   },
   {
     title: "Print page",
-    desc: "Print the current page",
+    description: "Print the current page",
     type: "action",
     action: "print",
     icon: Print,
@@ -136,7 +136,7 @@ const actions: Action[] = [
   ...shortcuts,
   {
     title: "Browsing history",
-    desc: "Browse through your browsing history",
+    description: "Browse through your browsing history",
     type: "action",
     action: "history",
     icon: FolderBriefcase,
@@ -145,7 +145,7 @@ const actions: Action[] = [
   },
   {
     title: "Incognito mode",
-    desc: "Open an incognito window",
+    description: "Open an incognito window",
     type: "action",
     action: "incognito",
     icon: Incognito,
@@ -154,7 +154,7 @@ const actions: Action[] = [
   },
   {
     title: "Downloads",
-    desc: "Browse through your downloads",
+    description: "Browse through your downloads",
     type: "action",
     action: "downloads",
     icon: DrawerArrowDownload,
@@ -163,7 +163,7 @@ const actions: Action[] = [
   },
   {
     title: "Extensions",
-    desc: "Manage your Chrome Extensions",
+    description: "Manage your Chrome Extensions",
     type: "action",
     action: "extensions",
     icon: PuzzlePiece,
@@ -171,7 +171,7 @@ const actions: Action[] = [
   },
   {
     title: "Chrome settings",
-    desc: "Open the Chrome settings",
+    description: "Open the Chrome settings",
     type: "action",
     action: "settings",
     icon: Settings,
@@ -180,7 +180,7 @@ const actions: Action[] = [
   },
   {
     title: "Scroll to bottom",
-    desc: "Scroll to the bottom of the page",
+    description: "Scroll to the bottom of the page",
     type: "action",
     action: "scroll-bottom",
     icon: ArrowDown,
@@ -189,7 +189,7 @@ const actions: Action[] = [
   },
   {
     title: "Scroll to top",
-    desc: "Scroll to the top of the page",
+    description: "Scroll to the top of the page",
     type: "action",
     action: "scroll-top",
     icon: ArrowUp,
@@ -198,7 +198,7 @@ const actions: Action[] = [
   },
   {
     title: "Go back",
-    desc: "Go back in history for the current tab",
+    description: "Go back in history for the current tab",
     type: "action",
     action: "go-back",
     icon: ArrowStepBack,
@@ -207,7 +207,7 @@ const actions: Action[] = [
   },
   {
     title: "Go forward",
-    desc: "Go forward in history for the current tab",
+    description: "Go forward in history for the current tab",
     type: "action",
     action: "go-forward",
     icon: ArrowForward,
@@ -216,7 +216,7 @@ const actions: Action[] = [
   },
   {
     title: "Duplicate tab",
-    desc: "Make a copy of the current tab",
+    description: "Make a copy of the current tab",
     type: "action",
     action: "duplicate-tab",
     icon: PanelSeparateWindow,
@@ -225,7 +225,7 @@ const actions: Action[] = [
   },
   {
     title: "Close tab",
-    desc: "Close the current tab",
+    description: "Close the current tab",
     type: "action",
     action: "close-current-tab",
     icon: TrayItemRemove,
@@ -234,7 +234,7 @@ const actions: Action[] = [
   },
   {
     title: "Close window",
-    desc: "Close the current window",
+    description: "Close the current window",
     type: "action",
     action: "close-window",
     icon: Delete,
@@ -243,7 +243,7 @@ const actions: Action[] = [
   },
   {
     title: "Manage browsing data",
-    desc: "Manage your browsing data",
+    description: "Manage your browsing data",
     type: "action",
     action: "manage-data",
     icon: Filter,
@@ -252,7 +252,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear all browsing data",
-    desc: "Clear all of your browsing data",
+    description: "Clear all of your browsing data",
     type: "action",
     action: "remove-all",
     icon: EyeTracking,
@@ -260,7 +260,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear browsing history",
-    desc: "Clear all of your browsing history",
+    description: "Clear all of your browsing history",
     type: "action",
     action: "remove-history",
     icon: Fingerprint,
@@ -268,7 +268,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear cookies",
-    desc: "Clear all cookies",
+    description: "Clear all cookies",
     type: "action",
     action: "remove-cookies",
     icon: Cookies,
@@ -276,7 +276,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear cache",
-    desc: "Clear the cache",
+    description: "Clear the cache",
     type: "action",
     action: "remove-cache",
     icon: Toolbox,
@@ -284,7 +284,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear local storage",
-    desc: "Clear the local storage",
+    description: "Clear the local storage",
     type: "action",
     action: "remove-local-storage",
     icon: Storage,
@@ -292,7 +292,7 @@ const actions: Action[] = [
   },
   {
     title: "Clear passwords",
-    desc: "Clear all saved passwords",
+    description: "Clear all saved passwords",
     type: "action",
     action: "remove-passwords",
     icon: Key,
