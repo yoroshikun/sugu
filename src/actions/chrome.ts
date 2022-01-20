@@ -1,6 +1,7 @@
 import type { Action } from "./types";
 import getCurrentTab from "../helpers/getCurrentTab";
 import refreshActions from "./refreshActions";
+import { History, Star } from "./icons/fluidui";
 
 // Helpers
 export const getTabs = () => {
@@ -32,13 +33,12 @@ export const getBookmarks = () => {
       if (bookmark.url) {
         newActions.push({
           title: bookmark.title,
-          desc: "Bookmark",
+          desc: bookmark.url,
           bookmarkId: bookmark.id,
           url: bookmark.url,
           type: "bookmark",
           action: "bookmark",
-          emoji: true,
-          emojiChar: "⭐️",
+          icon: Star,
           showKeys: false,
         });
       }
@@ -153,11 +153,10 @@ const searchHistory = (query) => {
       for (const action of data) {
         newActions.push({
           title: action.title,
-          type: "history",
-          emoji: true,
-          emojiChar: "🏛",
-          action: "history",
           desc: action.url,
+          type: "history",
+          action: "history",
+          icon: History,
         });
       }
     }

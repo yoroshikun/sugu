@@ -2,9 +2,9 @@
 
 > Disclaimer: This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) more disclaimer below in the [Disclaimer](#disclaimer) section.
 
-Instant spotlight like search and actions with Sugu Search. 
+Instant spotlight like search and actions in your browser with Sugu Search. 
 
-Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X](https://alyssax.com)s [Omni](https://github.com/alyssaxuu/omni)
+Developed by [Drew Hutton](https://github.com/yoroshikun)
 
 ## Table of contents
 
@@ -19,7 +19,7 @@ Developed by [Drew Hutton](https://github.com/yoroshikun) inspired by [Alyssa X]
 
 ## Features
 
-- ⚡️ Blazing fast and lightweight UX
+- ⚡️ Blazing fast and lightweight UX Built with Svelte
 - 💅 Modern Fluid UI
 - 🗂 Tab management
 - 📚 Bookmarks management
@@ -96,6 +96,7 @@ TBA
 - [Svelte](https://svelte.dev/) - Cybernetically Enhanced Web Apps
 - [Omni](https://github.com/alyssaxuu/omni) - Alyssa X's Original Omni Chrome Extension
 - [whats.new](https://whats.new/) - Amazing resource for url as shortcuts
+- [Fluid UI Icons](https://github.com/microsoft/fluentui-system-icons) - Microsoft Fluent UI Icons
 
 ## Disclaimer
 

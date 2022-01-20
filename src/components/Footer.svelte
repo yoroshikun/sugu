@@ -1,16 +1,22 @@
 <script lang="ts">
+  import { Settings } from "../actions/icons/fluidui";
+
   export let results: number = 0;
 </script>
 
 <div class="sugu-footer">
   <div class="sugu-results">{results} result{results === 1 ? "" : "s"}</div>
-  <div>
+  <div class="sugu-right">
     <div class="sugu-instructions">
       Use arrow keys <span class="sugu-shortcut">↑</span><span
         class="sugu-shortcut">↓</span
       > to navigate
     </div>
-    <div class="sugu-settings" />
+    <div class="sugu-settings">
+      <span class="sugu-icon">
+        {@html Settings}
+      </span>
+    </div>
   </div>
 </div>
 
@@ -46,5 +52,24 @@
     text-align: center;
     padding: 0.25em 0.5em;
     margin-left: 0.5em;
+  }
+
+  .sugu-right {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sugu-settings {
+    display: flex;
+    align-items: center;
+    background: var(--background-sugu);
+    border-radius: 1em;
+    padding: 0.5em;
+  }
+
+  .sugu-icon {
+    height: 2em;
+    width: 2em;
+    fill: var(--accent-sugu);
   }
 </style>

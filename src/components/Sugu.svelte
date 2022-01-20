@@ -188,7 +188,7 @@
       --text-sugu-2: #c5c6ca;
       --text-sugu-3: #a5a5ae;
       --select-sugu: #2e323c;
-      --accent-sugu: #6068d2;
+      --accent-sugu: #a160d2;
       --accent-sugu-hover: #484fac;
       --shortcut-sugu: #4b4f5c;
       --placeholder-sugu: #63687b;
@@ -203,7 +203,7 @@
       --text-sugu-2: #2b2d41;
       --text-sugu-3: #929db2;
       --select-sugu: #eff3f9;
-      --accent-sugu: #6068d2;
+      --accent-sugu: #a160d2;
       --accent-sugu-hover: #484fac;
       --shortcut-sugu: #dadeea;
       --placeholder-sugu: #bac2d1;

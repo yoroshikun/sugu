@@ -1,0 +1,41 @@
+// @ts-nocheck
+
+export { default as Mute } from "@fluentui/svg-icons/icons/speaker_mute_20_regular.svg";
+export { default as Speaker2 } from "@fluentui/svg-icons/icons/speaker_2_20_regular.svg";
+export { default as Pin } from "@fluentui/svg-icons/icons/pin_20_regular.svg";
+export { default as PinOff } from "@fluentui/svg-icons/icons/pin_off_20_regular.svg";
+export { default as Sparkle } from "@fluentui/svg-icons/icons/sparkle_20_regular.svg";
+export { default as BookmarkAdd } from "@fluentui/svg-icons/icons/bookmark_add_20_regular.svg";
+export { default as BookmarkOff } from "@fluentui/svg-icons/icons/bookmark_off_20_regular.svg";
+export { default as FullScreenMaximize } from "@fluentui/svg-icons/icons/full_screen_maximize_20_regular.svg";
+export { default as ArrowClockwise } from "@fluentui/svg-icons/icons/arrow_clockwise_20_regular.svg";
+export { default as PersonQuestionMark } from "@fluentui/svg-icons/icons/person_question_mark_20_regular.svg";
+export { default as MailAdd } from "@fluentui/svg-icons/icons/mail_add_20_regular.svg";
+export { default as Board } from "@fluentui/svg-icons/icons/board_20_regular.svg";
+export { default as VideoAdd } from "@fluentui/svg-icons/icons/video_add_20_regular.svg";
+export { default as CalligraphyPen } from "@fluentui/svg-icons/icons/calligraphy_pen_20_regular.svg";
+export { default as DocumentPDF } from "@fluentui/svg-icons/icons/document_pdf_20_regular.svg";
+export { default as FolderBriefcase } from "@fluentui/svg-icons/icons/folder_briefcase_20_regular.svg";
+export { default as Globe } from "@fluentui/svg-icons/icons/globe_20_regular.svg";
+export { default as Incognito } from "@fluentui/svg-icons/icons/incognito_24_regular.svg";
+export { default as DrawerArrowDownload } from "@fluentui/svg-icons/icons/drawer_arrow_download_20_regular.svg";
+export { default as PuzzlePiece } from "@fluentui/svg-icons/icons/puzzle_piece_20_regular.svg";
+export { default as Settings } from "@fluentui/svg-icons/icons/settings_20_regular.svg";
+export { default as ArrowDown } from "@fluentui/svg-icons/icons/arrow_down_20_regular.svg";
+export { default as ArrowUp } from "@fluentui/svg-icons/icons/arrow_up_20_regular.svg";
+export { default as ArrowStepBack } from "@fluentui/svg-icons/icons/arrow_step_back_20_regular.svg";
+export { default as ArrowForward } from "@fluentui/svg-icons/icons/arrow_forward_20_regular.svg";
+export { default as PanelSeparateWindow } from "@fluentui/svg-icons/icons/panel_separate_window_20_regular.svg";
+export { default as TrayItemRemove } from "@fluentui/svg-icons/icons/tray_item_remove_20_regular.svg";
+export { default as Key } from "@fluentui/svg-icons/icons/key_20_regular.svg";
+export { default as Delete } from "@fluentui/svg-icons/icons/delete_20_regular.svg";
+export { default as EyeTracking } from "@fluentui/svg-icons/icons/eye_tracking_20_regular.svg";
+export { default as Filter } from "@fluentui/svg-icons/icons/filter_20_regular.svg";
+export { default as Fingerprint } from "@fluentui/svg-icons/icons/fingerprint_24_regular.svg";
+export { default as Storage } from "@fluentui/svg-icons/icons/storage_24_regular.svg";
+export { default as Cookies } from "@fluentui/svg-icons/icons/cookies_20_regular.svg";
+export { default as Toolbox } from "@fluentui/svg-icons/icons/toolbox_20_regular.svg";
+
+export { default as Search } from "@fluentui/svg-icons/icons/search_20_regular.svg";
+export { default as Star } from "@fluentui/svg-icons/icons/star_20_regular.svg";
+export { default as History } from "@fluentui/svg-icons/icons/history_20_regular.svg";

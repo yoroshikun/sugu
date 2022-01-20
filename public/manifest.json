@@ -1,6 +1,6 @@
 {
   "name": "Sugu",
-  "description": "Instant spotlight like search and actions with Sugu Search for your browser",
+  "description": "Instant spotlight like search and actions in your browser with Sugu Search.",
   "offline_enabled": true,
   "version": "1.0.0",
   "manifest_version": 3,
