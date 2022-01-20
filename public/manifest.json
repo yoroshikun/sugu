@@ -39,7 +39,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["fonts/*", "icons/*", "build/*"],
+      "resources": ["./sugu-new.html", "fonts/*", "icons/*", "build/*"],
       "matches": ["<all_urls>"]
     }
   ],

@@ -31,6 +31,7 @@ import {
   Cookies,
   Storage,
   Toolbox,
+  Print,
 } from "../icons/fluidui";
 
 const actions: Action[] = [
@@ -122,6 +123,15 @@ const actions: Action[] = [
     icon: MailAdd,
     showKeys: true,
     keys: ["⌥", "⇧", "C"],
+  },
+  {
+    title: "Print page",
+    desc: "Print the current page",
+    type: "action",
+    action: "print",
+    icon: Print,
+    showKeys: true,
+    keys: ["⌘", "P"],
   },
   ...shortcuts,
   {

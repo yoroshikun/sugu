@@ -1,12 +1,17 @@
 import refreshActions from "./actions/refreshActions";
 import handleAction from "./actions/handleAction";
 import { getBookmarks, getTabs } from "./actions/chrome";
+import getCurrentTab from "./helpers/getCurrentTab";
 
 // Open on install
 chrome.runtime.onInstalled.addListener((object) => {
   const manifest = chrome.runtime.getManifest();
 
   const injectIntoTab = (tab) => {
+    if (tab.url.startsWith("chrome://")) {
+      return;
+    }
+
     const scripts = manifest.content_scripts[0].js;
     const s = scripts.length;
 
@@ -55,11 +60,15 @@ chrome.action.onClicked.addListener((tab) => {
   chrome.tabs.sendMessage(tab.id, { request: "open-sugu" });
 });
 
-chrome.commands.onCommand.addListener((command) => {
+chrome.commands.onCommand.addListener(async (command) => {
   if (command === "open-sugu") {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { request: "open-sugu" });
-    });
+    const tab = await getCurrentTab();
+    if (tab.url.includes("chrome://")) {
+      // Create new page and remove current one
+      return chrome.tabs.create({ url: "./sugu-new.html" });
+    }
+
+    return chrome.tabs.sendMessage(tab.id, { request: "open-sugu" });
   }
 });
 

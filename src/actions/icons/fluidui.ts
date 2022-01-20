@@ -35,6 +35,7 @@ export { default as Fingerprint } from "@fluentui/svg-icons/icons/fingerprint_24
 export { default as Storage } from "@fluentui/svg-icons/icons/storage_24_regular.svg";
 export { default as Cookies } from "@fluentui/svg-icons/icons/cookies_20_regular.svg";
 export { default as Toolbox } from "@fluentui/svg-icons/icons/toolbox_20_regular.svg";
+export { default as Print } from "@fluentui/svg-icons/icons/print_20_regular.svg";
 
 export { default as Search } from "@fluentui/svg-icons/icons/search_20_regular.svg";
 export { default as Star } from "@fluentui/svg-icons/icons/star_20_regular.svg";
