@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@fluentui/svg-icons": "^1.1.157",
-    "@sveltejs/svelte-virtual-list": "^3.0.1"
+    "@sveltejs/svelte-virtual-list": "^3.0.1",
+    "fuse.js": "^6.5.3"
   }
 }

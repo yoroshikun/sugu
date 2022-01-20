@@ -5,7 +5,7 @@ import { Board, VideoAdd, CalligraphyPen, DocumentPDF } from "../icons/fluidui";
 const shortcuts: Action[] = [
   {
     title: "New Notion page",
-    desc: "Create a new Notion page",
+    description: "Create a new Notion page",
     type: "action",
     action: "url",
     url: "https://notion.new",
@@ -13,7 +13,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Sheets spreadsheet",
-    desc: "Create a new Google Sheets spreadsheet",
+    description: "Create a new Google Sheets spreadsheet",
     type: "action",
     action: "url",
     url: "https://sheets.new",
@@ -21,7 +21,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Docs document",
-    desc: "Create a new Google Docs document",
+    description: "Create a new Google Docs document",
     type: "action",
     action: "url",
     url: "https://docs.new",
@@ -29,7 +29,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Slides presentation",
-    desc: "Create a new Google Slides presentation",
+    description: "Create a new Google Slides presentation",
     type: "action",
     action: "url",
     url: "https://slides.new",
@@ -37,7 +37,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New form",
-    desc: "Create a new Google Forms form",
+    description: "Create a new Google Forms form",
     type: "action",
     action: "url",
     url: "https://forms.new",
@@ -45,7 +45,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Medium story",
-    desc: "Create a new Medium story",
+    description: "Create a new Medium story",
     type: "action",
     action: "url",
     url: "https://story.new",
@@ -53,7 +53,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New GitHub repository",
-    desc: "Create a new GitHub repository",
+    description: "Create a new GitHub repository",
     type: "action",
     action: "url",
     url: "https://github.new",
@@ -61,7 +61,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New GitHub gist",
-    desc: "Create a new GitHub gist",
+    description: "Create a new GitHub gist",
     type: "action",
     action: "url",
     url: "https://gist.new",
@@ -69,7 +69,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New CodePen pen",
-    desc: "Create a new CodePen pen",
+    description: "Create a new CodePen pen",
     type: "action",
     action: "url",
     url: "https://pen.new",
@@ -77,7 +77,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Excel spreadsheet",
-    desc: "Create a new Excel spreadsheet",
+    description: "Create a new Excel spreadsheet",
     type: "action",
     action: "url",
     url: "https://excel.new",
@@ -85,7 +85,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New PowerPoint presentation",
-    desc: "Create a new PowerPoint presentation",
+    description: "Create a new PowerPoint presentation",
     type: "action",
     url: "https://powerpoint.new",
     action: "url",
@@ -93,7 +93,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New Word document",
-    desc: "Create a new Word document",
+    description: "Create a new Word document",
     type: "action",
     action: "url",
     url: "https://word.new",
@@ -101,7 +101,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a whiteboard",
-    desc: "Create a collaborative whiteboard",
+    description: "Create a collaborative whiteboard",
     type: "action",
     action: "url",
     url: "https://whiteboard.new",
@@ -109,7 +109,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Record a video",
-    desc: "Record and edit a video",
+    description: "Record and edit a video",
     type: "action",
     action: "url",
     url: "https://recording.new",
@@ -117,7 +117,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a Figma file",
-    desc: "Create a new Figma file",
+    description: "Create a new Figma file",
     type: "action",
     action: "url",
     url: "https://figma.new",
@@ -125,7 +125,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a FigJam file",
-    desc: "Create a new FigJam file",
+    description: "Create a new FigJam file",
     type: "action",
     action: "url",
     url: "https://figjam.new",
@@ -133,7 +133,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Hunt a product",
-    desc: "Submit a product to Product Hunt",
+    description: "Submit a product to Product Hunt",
     type: "action",
     action: "url",
     url: "https://www.producthunt.com/posts/new",
@@ -141,7 +141,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Make a tweet",
-    desc: "Make a tweet on Twitter",
+    description: "Make a tweet on Twitter",
     type: "action",
     action: "url",
     url: "https://twitter.com/intent/tweet",
@@ -149,7 +149,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a playlist",
-    desc: "Create a Spotify playlist",
+    description: "Create a Spotify playlist",
     type: "action",
     action: "url",
     url: "https://playlist.new",
@@ -158,7 +158,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a Canva design",
-    desc: "Create a new design with Canva",
+    description: "Create a new design with Canva",
     type: "action",
     action: "url",
     url: "https://design.new",
@@ -166,7 +166,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create a new podcast episode",
-    desc: "Create a new podcast episode with Anchor",
+    description: "Create a new podcast episode with Anchor",
     type: "action",
     action: "url",
     url: "https://episode.new",
@@ -174,7 +174,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Edit an image",
-    desc: "Edit an image with Adobe Photoshop",
+    description: "Edit an image with Adobe Photoshop",
     type: "action",
     action: "url",
     url: "https://photo.new",
@@ -182,7 +182,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Convert to PDF",
-    desc: "Convert a file to PDF",
+    description: "Convert a file to PDF",
     type: "action",
     action: "url",
     url: "https://pdf.new",
@@ -190,7 +190,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Scan a QR code",
-    desc: "Scan a QR code with your camera",
+    description: "Scan a QR code with your camera",
     type: "action",
     action: "url",
     url: "https://scan.new",
@@ -198,7 +198,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Add a task to Asana",
-    desc: "Create a new task in Asana",
+    description: "Create a new task in Asana",
     type: "action",
     action: "url",
     url: "https://task.new",
@@ -207,7 +207,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Add an issue to Linear",
-    desc: "Create a new issue in Linear",
+    description: "Create a new issue in Linear",
     type: "action",
     action: "url",
     url: "https://linear.new",
@@ -215,7 +215,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Add a task to WIP",
-    desc: "Create a new task in WIP",
+    description: "Create a new task in WIP",
     type: "action",
     action: "url",
     url: "https://todo.new",
@@ -223,7 +223,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Create an event",
-    desc: "Add an event to Google Calendar",
+    description: "Add an event to Google Calendar",
     type: "action",
     action: "url",
     url: "https://cal.new",
@@ -231,7 +231,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "Add a note",
-    desc: "Add a note to Google Keep",
+    description: "Add a note to Google Keep",
     type: "action",
     action: "url",
     url: "https://note.new",
@@ -239,7 +239,7 @@ const shortcuts: Action[] = [
   },
   {
     title: "New meeting",
-    desc: "Start a Google Meet meeting",
+    description: "Start a Google Meet meeting",
     type: "action",
     action: "url",
     url: "https://meet.new",

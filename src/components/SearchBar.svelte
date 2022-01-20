@@ -1,28 +1,55 @@
 <script lang="ts">
+  import type { Action } from "../actions/types";
   import { Search } from "../actions/icons/fluidui";
 
   import debounce from "../helpers/debounce";
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
+  import getTextWidth from "../helpers/getTextWidth";
 
   let searchValue = "";
+  let ghostAction: Action = null;
 
   $: handleSearchInput = (
     e: Event & { currentTarget: EventTarget & HTMLInputElement }
   ) => {
     const enteredCommandMode = search.update(searchValue);
-    actions.filter(searchValue, searchValue.length < $search.previous.length);
 
     if (enteredCommandMode) {
       searchValue = $search.current;
       // TODO Fill actions list with command specific
+      return;
     }
+
+    return actions.filter(searchValue);
   };
+
+  $: {
+    if ($actions.filteredActions.length < 1 || searchValue.length === 0) {
+      ghostAction = null;
+    } else {
+      if (
+        $actions.filteredActions[0].title
+          .toLowerCase()
+          .startsWith(searchValue.toLowerCase())
+      ) {
+        ghostAction = $actions.filteredActions[0];
+      } else {
+        ghostAction = null;
+      }
+    }
+  }
+
+  $: ghostText = ghostAction?.title.slice(searchValue.length) || "";
 </script>
 
 <div class="sugu-input-container">
   <div class="sugu-search-icon">
-    {@html Search}
+    {#if ghostAction?.favIconUrl}
+      <img src={ghostAction.favIconUrl} alt={ghostAction.title} />
+    {:else}
+      {@html ghostAction?.icon ? ghostAction.icon : Search}
+    {/if}
   </div>
   {#if $search.command}
     <div class="sugu-command">
@@ -38,6 +65,23 @@
     bind:value={searchValue}
     on:input={(e) => debounce(handleSearchInput(e))}
   />
+  {#if ghostText}
+    <div
+      class="sugu-input-ghost"
+      style={`left: calc(2.25em + ${Math.ceil(
+        getTextWidth(
+          ghostAction.title.slice(
+            0,
+            searchValue.length +
+              (ghostAction.title.charAt(searchValue.length) === " " ? 1 : 0)
+          ),
+          "400 22.4px OpenSans"
+        )
+      )}px`}
+    >
+      {ghostText}
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -48,10 +92,19 @@
     margin-left: -1em;
     margin-right: 0.5em;
   }
+
+  .sugu-search-icon img {
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.25em;
+    margin-top: 0.25em;
+  }
+
   .sugu-search-input {
     display: block;
     background: transparent;
-    border: 0px;
+    border: 0;
+    padding: 0;
     outline: none;
     font-size: 1.4em;
     font-weight: 400;
@@ -59,6 +112,18 @@
     width: 100%;
     color: var(--text-sugu);
     caret-color: var(--accent-sugu);
+  }
+
+  .sugu-input-ghost {
+    position: absolute;
+    top: 0.5em;
+    left: 2.25em;
+    width: 100%;
+    color: var(--placeholder-sugu);
+    font-size: 1.4em;
+    font-weight: 400;
+    height: 3em;
+    pointer-events: none;
   }
 
   .sugu-search-input::placeholder {

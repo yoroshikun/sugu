@@ -1,46 +1,74 @@
 import type { Action } from "../actions/types";
 
 import { writable, get } from "svelte/store";
+import Fuse from "fuse.js";
 import handleBrowserAction from "../actions/browser";
 import { search } from "./search";
 import { getScrollParent } from "../helpers/getScrollParent";
+
+const options = {
+  keys: ["title", "description"],
+  threshold: 0.5,
+  distance: 20,
+};
 
 const createActions = () => {
   const { subscribe, set, update } = writable<{
     actions: Action[];
     filteredActions: Action[];
     selectedAction: Action | null;
-  }>({ actions: [], filteredActions: [], selectedAction: null });
+    fuse: Fuse<Action>; // Fuse.js Client
+  }>({ actions: [], filteredActions: [], selectedAction: null, fuse: null });
 
   return {
     subscribe,
     reset: () => {
-      chrome.runtime.sendMessage({ request: "get-actions" }, (response) => {
-        if (response) {
-          set({
-            actions: response.actions,
-            filteredActions: response.actions,
-            selectedAction: response.actions[0],
-          });
+      chrome.runtime.sendMessage(
+        { request: "get-actions" },
+        (response: { actions: Action[] }) => {
+          if (response) {
+            set({
+              actions: response.actions,
+              filteredActions: response.actions,
+              selectedAction: response.actions[0],
+              fuse: new Fuse(response.actions, options),
+            });
+          }
         }
-      });
+      );
     },
-    filter: (value: string, full?: boolean) => {
+    filter: (value: string) => {
       update((prev) => {
-        const filteredActions = prev[
-          full ? "actions" : "filteredActions"
-        ].filter((action) => {
-          // This is where the fuzzy filtering can be implemented
-          return (
-            action.title.toLowerCase().includes(value.toLowerCase()) ||
-            action.desc.toLowerCase().includes(value.toLowerCase())
-          );
-        });
+        // if (exact) {
+        //   const filteredActions = prev[
+        //     full ? "actions" : "filteredActions"
+        //   ].filter((action) => {
+        //     // This is where the fuzzy filtering can be implemented
+        //     return (
+        //       action.title.toLowerCase().includes(value.toLowerCase()) ||
+        //       action.desc.toLowerCase().includes(value.toLowerCase())
+        //     );
+        //   });
+        // }
+
+        if (value.length < 1) {
+          return {
+            actions: prev.actions,
+            filteredActions: prev.actions,
+            selectedAction: prev.actions[0],
+            fuse: prev.fuse,
+          };
+        }
+
+        const filteredActions = prev.fuse
+          .search(value)
+          .map((action) => action.item);
 
         return {
           actions: prev.actions,
           filteredActions,
           selectedAction: filteredActions[0],
+          fuse: prev.fuse,
         };
       });
     },
@@ -126,6 +154,7 @@ const createActions = () => {
           actions: prev.actions,
           filteredActions: prev.filteredActions,
           selectedAction: newAction,
+          fuse: prev.fuse,
         };
       });
     },
@@ -135,11 +164,17 @@ const createActions = () => {
           actions: prev.actions,
           filteredActions: prev.filteredActions,
           selectedAction: action,
+          fuse: prev.fuse,
         };
       });
     },
     set: (actions: Action[]) => {
-      set({ actions, filteredActions: actions, selectedAction: actions[0] });
+      set({
+        actions,
+        filteredActions: actions,
+        selectedAction: actions[0],
+        fuse: new Fuse(actions, options),
+      });
     },
   };
 };
