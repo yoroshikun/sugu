@@ -1,14 +1,11 @@
 <script lang="ts">
   import browser from "webextension-polyfill";
+  import focusLock from "dom-focus-lock";
   import { onMount, onDestroy } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { cubicIn } from "svelte/easing";
   import VirtualList from "@sveltejs/svelte-virtual-list";
 
-  import {
-    addOverrideListeners,
-    removeOverrideListeners,
-  } from "../helpers/overrideListeners";
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
   import SearchBar from "./SearchBar.svelte";
@@ -27,8 +24,13 @@
 
   // Helpers
   const closeSugu = () => {
-    isOpen = false;
+    const searchInput = document.querySelector(
+      "#sugu-input"
+    ) as HTMLInputElement;
+    focusLock.off(searchInput);
     document.getElementsByTagName("body")[0].style.overflow = "visible";
+
+    isOpen = false;
 
     // if in the temp tab we destroy the tab
     if (window.location.href.endsWith("/sugu-new.html")) {
@@ -50,6 +52,7 @@
       ) as HTMLInputElement;
 
       if (searchInput) {
+        focusLock.on(searchInput);
         searchInput.focus();
       }
     }, 100);
@@ -57,13 +60,13 @@
 
   // Handlers
   $: handleAction = (event?: KeyboardEvent) => {
-    closeSugu();
-
     if ($search.command) {
-      return actions.dispatchCommand(event);
+      actions.dispatchCommand(event);
+      return closeSugu();
     }
 
-    return actions.dispatchAction(event);
+    actions.dispatchAction(event);
+    return closeSugu();
   };
 
   $: handleInteraction = (event: KeyboardEvent) => {
@@ -133,8 +136,19 @@
   onMount(() => {
     actions.reset();
 
-    // Override any existing eventListeners (Fight the focus trap)
-    addOverrideListeners();
+    setTimeout(() => {
+      const searchInput = document.querySelector(
+        "#sugu-input"
+      ) as HTMLInputElement;
+
+      if (searchInput) {
+        // Multiple to fight
+        searchInput.focus();
+        focusLock.on(searchInput);
+        searchInput.focus();
+        searchInput.focus();
+      }
+    }, 100);
 
     // Subscribe to background messages
     browser.runtime.onMessage.addListener(messageListener);
@@ -144,7 +158,7 @@
 
   onDestroy(() => {
     // Remove overriding eventListeners
-    removeOverrideListeners();
+    focusLock.off(document.querySelector("#sugu-input") as HTMLInputElement);
 
     browser.runtime.onMessage.removeListener(messageListener);
   });

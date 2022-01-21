@@ -29,6 +29,7 @@
   "dependencies": {
     "@fluentui/svg-icons": "^1.1.157",
     "@sveltejs/svelte-virtual-list": "gitbreaker222/svelte-virtual-list#0f3d806",
+    "dom-focus-lock": "^1.0.4",
     "fuse.js": "^6.5.3"
   }
 }
