@@ -16,6 +16,7 @@ export const getTabs = async (): Promise<Action[]> => {
     action: "switch-tab",
     type: "tab",
     tabIndex: tab.index,
+    id: tab.id,
   }));
 };
 
@@ -152,8 +153,8 @@ const closeTab = async (tab: Tabs.Tab) => browser.tabs.remove(tab.id);
 
 const closeCurrentTab = async () => closeTab(await getCurrentTab());
 
-const removeBookmark = async (bookmark: { id: string }) =>
-  browser.bookmarks.remove(bookmark.id);
+const removeBookmark = async (bookmark: { bookmarkId: string }) =>
+  browser.bookmarks.remove(bookmark.bookmarkId);
 
 const searchHistory = async (query) => {
   const history = await browser.history.search({
@@ -173,13 +174,25 @@ const searchHistory = async (query) => {
 
 const handleAction = async (message, sender): Promise<any> => {
   switch (message.request) {
-    case "get-actions":
+    case "get-default-actions":
       const tabs = await getTabs();
       const bookmarks = await getBookmarks();
       const actions = await refreshActions([...tabs, ...bookmarks]);
       return { actions };
+    case "get-tabs":
+      return { actions: await getTabs() };
+    case "get-bookmarks":
+      return { actions: await getBookmarks() };
+    case "get-history":
+      return { actions: await searchHistory(message.query) };
+    case "get-actions":
+      return { actions: await refreshActions(message.actions) };
+    case "get-remove":
+      return { actions: [...(await getTabs()), ...(await getBookmarks())] };
     case "switch-tab":
       return switchTab(message.tab);
+    case "open-url":
+      return openBrowserUrl(message.url);
     case "go-back":
       return goBack(message.tab);
     case "go-forward":
@@ -224,9 +237,6 @@ const handleAction = async (message, sender): Promise<any> => {
       return closeWindow(sender.tab.windowId);
     case "close-current-tab":
       return closeCurrentTab();
-    case "search-history":
-      const newActions = searchHistory(message.query);
-      return { history: newActions };
     case "remove":
       if (message.type == "bookmark") {
         removeBookmark(message.action);

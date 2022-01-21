@@ -25,7 +25,21 @@ const createActions = () => {
     subscribe,
     reset: () => {
       browser.runtime
-        .sendMessage({ request: "get-actions" })
+        .sendMessage({ request: "get-default-actions" })
+        .then((response: { actions: Action[] }) => {
+          if (response) {
+            set({
+              actions: response.actions,
+              filteredActions: response.actions,
+              selectedAction: response.actions[0],
+              fuse: new Fuse(response.actions, options),
+            });
+          }
+        });
+    },
+    prepareCommand: (command: string) => {
+      browser.runtime
+        .sendMessage({ request: `get-${command}` })
         .then((response: { actions: Action[] }) => {
           if (response) {
             set({
@@ -83,7 +97,7 @@ const createActions = () => {
       browser.runtime.sendMessage({
         request: selectedAction.action,
         tab: selectedAction,
-      }); // Hmmm this needs to be different
+      }); // Hmmm this needs to be different maybe
 
       handleBrowserAction(selectedAction, e);
     },
@@ -118,6 +132,13 @@ const createActions = () => {
         window.open(selectedAction.url, "_blank");
         return;
       }
+
+      if (command === "tabs" || command === "bookmarks") {
+        browser.runtime.sendMessage({
+          request: selectedAction.action,
+          tab: selectedAction,
+        });
+      }
     },
     selectNearest: (offset: number) => {
       // A fix to fast scrollers is to just count the index and scroll by the amount
@@ -137,7 +158,7 @@ const createActions = () => {
         }
 
         const element = document.querySelector(
-          `#sugu-item-${newAction.title.toLowerCase().split(" ").join("-")}` // This is a bug and can be better
+          `.sugu-item[data-id="${encodeURI(newAction.title)}"]`
         );
         const scrollParent = getScrollParent(element);
         const scrollOffset = offset > 0 ? -527 : -273; // Odd numbers to make it harder to get locked
