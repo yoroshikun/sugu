@@ -76,7 +76,7 @@ yarn
 To run the extension in development mode, you can run `npm run dev` or `yarn dev`.
 
 ```bash
-yarn build
+yarn dev
 # or npm run dev
 ```
 

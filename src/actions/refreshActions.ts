@@ -1,4 +1,5 @@
 import type { Action } from "./types";
+
 import actionsList from "./list/default";
 import addonActionList from "./list/addon";
 import getCurrentTab from "../helpers/getCurrentTab";

@@ -1,12 +1,10 @@
 {
   "name": "Sugu Search",
   "description": "Instant spotlight like search and actions with Sugu Search for your browser",
-  "offline_enabled": true,
   "version": "1.0.0",
-  "manifest_version": 3,
-  "action": {
-    "default": "sugu.html",
-    "default_icons": {
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": {
       "16": "icons/logo-16.png",
       "48": "icons/logo-48.png",
       "128": "icons/logo-128.png"
@@ -35,25 +33,15 @@
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["build/background.js"]
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["sugu-new.html", "fonts/*", "icons/*", "build/*"],
-      "matches": ["<all_urls>"]
-    }
-  ],
   "permissions": [
     "tabs",
     "activeTab",
     "bookmarks",
     "browsingData",
     "history",
-    "scripting"
+    "search"
   ],
-  "host_permissions": [
-    "https://www.googleapis.com/*",
-    "https://gstatic.com/*",
-    "*://*/*"
-  ]
+  "web_accessible_resources": ["sugu-new.html", "fonts/*", "icons/*", "build/*"]
 }

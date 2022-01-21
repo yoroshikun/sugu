@@ -6,9 +6,11 @@
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
   import getTextWidth from "../helpers/getTextWidth";
+  import detectBrowser from "../helpers/detectBrowser";
 
   let searchValue = "";
   let ghostAction: Action = null;
+  let isFirefox = detectBrowser() === "Mozilla Firefox";
 
   $: handleSearchInput = (
     e: Event & { currentTarget: EventTarget & HTMLInputElement }
@@ -77,7 +79,7 @@
           ),
           "400 22.4px OpenSans"
         )
-      )}px`}
+      )}px); margin-top: ${isFirefox ? 4 : 0}px`}
     >
       {ghostText}
     </div>
@@ -116,7 +118,6 @@
 
   .sugu-input-ghost {
     position: absolute;
-    top: 0.5em;
     left: 2.25em;
     width: 100%;
     color: var(--placeholder-sugu);
@@ -124,6 +125,9 @@
     font-weight: 400;
     height: 3em;
     pointer-events: none;
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
   }
 
   .sugu-search-input::placeholder {

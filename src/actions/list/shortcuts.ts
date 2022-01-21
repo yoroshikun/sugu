@@ -1,5 +1,6 @@
 import type { Action } from "../types";
 
+import browser from 'webextension-polyfill';
 import { Board, VideoAdd, CalligraphyPen, DocumentPDF } from "../icons/fluidui";
 
 const shortcuts: Action[] = [
@@ -9,7 +10,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://notion.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-notion.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-notion.png"),
   },
   {
     title: "New Sheets spreadsheet",
@@ -17,7 +18,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://sheets.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-sheets.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-sheets.png"),
   },
   {
     title: "New Docs document",
@@ -25,7 +26,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://docs.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-docs.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-docs.png"),
   },
   {
     title: "New Slides presentation",
@@ -33,7 +34,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://slides.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-slides.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-slides.png"),
   },
   {
     title: "New form",
@@ -41,7 +42,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://forms.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-forms.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-forms.png"),
   },
   {
     title: "New Medium story",
@@ -49,7 +50,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://story.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-medium.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-medium.png"),
   },
   {
     title: "New GitHub repository",
@@ -57,7 +58,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://github.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-github.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-github.png"),
   },
   {
     title: "New GitHub gist",
@@ -65,7 +66,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://gist.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-github.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-github.png"),
   },
   {
     title: "New CodePen pen",
@@ -73,7 +74,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://pen.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-codepen.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-codepen.png"),
   },
   {
     title: "New Excel spreadsheet",
@@ -81,7 +82,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://excel.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-excel.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-excel.png"),
   },
   {
     title: "New PowerPoint presentation",
@@ -89,7 +90,7 @@ const shortcuts: Action[] = [
     type: "action",
     url: "https://powerpoint.new",
     action: "url",
-    favIconUrl: chrome.runtime.getURL("icons/logo-powerpoint.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-powerpoint.png"),
   },
   {
     title: "New Word document",
@@ -97,7 +98,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://word.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-word.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-word.png"),
   },
   {
     title: "Create a whiteboard",
@@ -121,7 +122,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://figma.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-figma.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-figma.png"),
   },
   {
     title: "Create a FigJam file",
@@ -137,7 +138,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://www.producthunt.com/posts/new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-producthunt.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-producthunt.png"),
   },
   {
     title: "Make a tweet",
@@ -145,7 +146,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://twitter.com/intent/tweet",
-    favIconUrl: chrome.runtime.getURL("icons/logo-twitter.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-twitter.png"),
   },
   {
     title: "Create a playlist",
@@ -154,7 +155,7 @@ const shortcuts: Action[] = [
     action: "url",
     url: "https://playlist.new",
 
-    favIconUrl: chrome.runtime.getURL("icons/logo-spotify.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-spotify.png"),
   },
   {
     title: "Create a Canva design",
@@ -162,7 +163,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://design.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-canva.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-canva.png"),
   },
   {
     title: "Create a new podcast episode",
@@ -170,7 +171,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://episode.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-anchor.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-anchor.png"),
   },
   {
     title: "Edit an image",
@@ -178,7 +179,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://photo.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-photoshop.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-photoshop.png"),
   },
   {
     title: "Convert to PDF",
@@ -194,7 +195,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://scan.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-qr.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-qr.png"),
   },
   {
     title: "Add a task to Asana",
@@ -203,7 +204,7 @@ const shortcuts: Action[] = [
     action: "url",
     url: "https://task.new",
 
-    favIconUrl: chrome.runtime.getURL("icons/logo-asana.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-asana.png"),
   },
   {
     title: "Add an issue to Linear",
@@ -211,7 +212,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://linear.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-linear.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-linear.png"),
   },
   {
     title: "Add a task to WIP",
@@ -219,7 +220,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://todo.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-wip.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-wip.png"),
   },
   {
     title: "Create an event",
@@ -227,7 +228,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://cal.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-calendar.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-calendar.png"),
   },
   {
     title: "Add a note",
@@ -235,7 +236,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://note.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-keep.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-keep.png"),
   },
   {
     title: "New meeting",
@@ -243,7 +244,7 @@ const shortcuts: Action[] = [
     type: "action",
     action: "url",
     url: "https://meet.new",
-    favIconUrl: chrome.runtime.getURL("icons/logo-meet.png"),
+    favIconUrl: browser.runtime.getURL("icons/logo-meet.png"),
   },
 ];
 
