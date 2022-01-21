@@ -2,7 +2,8 @@ import type { Action } from "../actions/types";
 
 import { writable, get } from "svelte/store";
 import Fuse from "fuse.js";
-import handleBrowserAction from "../actions/browser";
+import browser from "webextension-polyfill";
+import handleBrowserAction from "../actions/window";
 import { search } from "./search";
 import { getScrollParent } from "../helpers/getScrollParent";
 
@@ -23,9 +24,9 @@ const createActions = () => {
   return {
     subscribe,
     reset: () => {
-      chrome.runtime.sendMessage(
-        { request: "get-actions" },
-        (response: { actions: Action[] }) => {
+      browser.runtime
+        .sendMessage({ request: "get-actions" })
+        .then((response: { actions: Action[] }) => {
           if (response) {
             set({
               actions: response.actions,
@@ -34,8 +35,7 @@ const createActions = () => {
               fuse: new Fuse(response.actions, options),
             });
           }
-        }
-      );
+        });
     },
     filter: (value: string) => {
       update((prev) => {
@@ -80,7 +80,7 @@ const createActions = () => {
         return;
       }
 
-      chrome.runtime.sendMessage({
+      browser.runtime.sendMessage({
         request: selectedAction.action,
         tab: selectedAction,
       }); // Hmmm this needs to be different
@@ -97,7 +97,7 @@ const createActions = () => {
       }
 
       if (command === "remove") {
-        chrome.runtime.sendMessage({
+        browser.runtime.sendMessage({
           request: "remove",
           type: selectedAction.type,
           action: selectedAction,

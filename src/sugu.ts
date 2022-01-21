@@ -1,3 +1,4 @@
+import browser from "webextension-polyfill";
 import Sugu from "./components/Sugu.svelte";
 
 let suguApp;
@@ -22,7 +23,7 @@ const addSuguListener = (message) => {
   }
 };
 
-chrome.runtime.onMessage.addListener(addSuguListener);
+browser.runtime.onMessage.addListener(addSuguListener);
 
 document.addEventListener("DOMContentLoaded", () => {
   if (window.location.href.endsWith("/sugu-new.html")) {

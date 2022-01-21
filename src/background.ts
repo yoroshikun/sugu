@@ -1,93 +1,82 @@
+import browser from "webextension-polyfill";
 import refreshActions from "./actions/refreshActions";
 import handleAction from "./actions/handleAction";
-import { getBookmarks, getTabs } from "./actions/chrome";
+import { getBookmarks, getTabs } from "./actions/browser";
 import getCurrentTab from "./helpers/getCurrentTab";
 
 // Open on install
-chrome.runtime.onInstalled.addListener((object) => {
-  const manifest = chrome.runtime.getManifest();
+browser.runtime.onInstalled.addListener(async (object) => {
+  const manifest = browser.runtime.getManifest();
 
   const injectIntoTab = (tab) => {
-    if (tab.url.startsWith("chrome://")) {
+    // Dont inject on non injectable pages
+    if (tab.url.startsWith("chrome") || tab.url.startsWith("about:")) {
       return;
     }
 
-    const scripts = manifest.content_scripts[0].js;
-    const s = scripts.length;
-
-    for (let i = 0; i < s; i++) {
-      chrome.scripting.executeScript({
+    for (const script of manifest.content_scripts[0].js) {
+      browser.scripting.executeScript({
         target: { tabId: tab.id },
-        files: [scripts[i]],
+        files: [script],
       });
     }
 
-    chrome.scripting.insertCSS({
-      target: { tabId: tab.id },
-      files: [manifest.content_scripts[0].css[0]],
-    });
+    for (const css of manifest.content_scripts[0].css)
+      browser.scripting.insertCSS({
+        target: { tabId: tab.id },
+        files: [css],
+      });
   };
 
-  // Get all windows
-  chrome.windows.getAll(
-    {
-      populate: true,
-    },
-    (windows) => {
-      let currentWindow;
-      const w = windows.length;
+  // Get and inject all windows
+  const windows = await browser.windows.getAll({
+    populate: true,
+  });
 
-      for (let i = 0; i < w; i++) {
-        currentWindow = windows[i];
-
-        let currentTab;
-        const t = currentWindow.tabs.length;
-
-        for (let j = 0; j < t; j++) {
-          currentTab = currentWindow.tabs[j];
-          injectIntoTab(currentTab);
-        }
-      }
+  for (const window of windows) {
+    for (const tab of window.tabs) {
+      injectIntoTab(tab);
     }
-  );
+  }
 
   // if (object.reason === "install") {
-  //   chrome.tabs.create({ url: "https://github.com/yoroshikun/sugu-search" });
+  //   browser.tabs.create({ url: "https://github.com/yoroshikun/sugu-search" });
   // }
 });
 
-chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.sendMessage(tab.id, { request: "open-sugu" });
-});
+browser[browser.action ? "action" : "browserAction"].onClicked.addListener(
+  (tab) => {
+    browser.tabs.sendMessage(tab.id, { request: "open-sugu" });
+  }
+);
 
-chrome.commands.onCommand.addListener(async (command) => {
+browser.commands.onCommand.addListener(async (command) => {
   if (command === "open-sugu") {
     const tab = await getCurrentTab();
-    if (tab.url.includes("chrome://")) {
-      // Create new page and remove current one
-      return chrome.tabs.create({ url: "./sugu-new.html" });
+    if (tab.url.includes("chrome://") || tab.url.startsWith("about:")) {
+      // Create new page
+      return browser.tabs.create({ url: "./sugu-new.html" });
     }
 
-    return chrome.tabs.sendMessage(tab.id, { request: "open-sugu" });
+    return browser.tabs.sendMessage(tab.id, { request: "open-sugu" });
   }
 });
 
 const reSyncSugu = async () => {
   const tabs = await getTabs();
-  const bookmarks = getBookmarks();
+  const bookmarks = await getBookmarks();
   await refreshActions([...tabs, ...bookmarks]);
   // Send a message back to the content script
 };
 
 // Check if tabs have changed and actions need to be fetched again
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) =>
+browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) =>
   reSyncSugu()
 );
-chrome.tabs.onCreated.addListener(async (tab) => reSyncSugu());
-chrome.tabs.onRemoved.addListener(async (tabId, changeInfo) => reSyncSugu());
+browser.tabs.onCreated.addListener(async (tab) => reSyncSugu());
+browser.tabs.onRemoved.addListener(async (tabId, changeInfo) => reSyncSugu());
 
 // Receive messages from any tab
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  handleAction(message, sender, sendResponse).then(() => {});
-  return true; // This is required for async! (https://stackoverflow.com/a/20077487)
-});
+browser.runtime.onMessage.addListener(async (message, sender) =>
+  handleAction(message, sender)
+);

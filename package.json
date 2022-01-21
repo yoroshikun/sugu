@@ -13,6 +13,7 @@
     "@rollup/plugin-typescript": "^8.2.5",
     "@tsconfig/svelte": "^2.0.1",
     "@types/chrome": "0.0.159",
+    "@types/webextension-polyfill": "^0.8.2",
     "rollup": "^2.58.0",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-inline-svg": "^2.0.0",
@@ -22,11 +23,12 @@
     "svelte-check": "^2.2.7",
     "svelte-preprocess": "^4.10.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "webextension-polyfill": "^0.8.0"
   },
   "dependencies": {
     "@fluentui/svg-icons": "^1.1.157",
-    "@sveltejs/svelte-virtual-list": "^3.0.1",
+    "@sveltejs/svelte-virtual-list": "gitbreaker222/svelte-virtual-list#0f3d806",
     "fuse.js": "^6.5.3"
   }
 }
