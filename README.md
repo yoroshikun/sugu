@@ -1,7 +1,5 @@
 # Sugu Search
 
-> Disclaimer: This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) more disclaimer below in the [Disclaimer](#disclaimer) section.
-
 Instant spotlight like search and actions in your browser with Sugu Search. 
 
 Developed by [Drew Hutton](https://github.com/yoroshikun)
@@ -87,7 +85,34 @@ yarn build
 ```
 All required files will be copied to the `dist` folder.
 
-### Running Locally
+### Running Locally / Self Hosting or Testing
+
+You can build and run this extension locally without needing to install though the store.
+#### Developers
+
+### Chrome
+
+1. Clone the code with your git client of choice or zip download.
+2. Open a terminal and navigate to the root of the project.
+3. Run `npm install` or `yarn`.
+4. Run `npm run build` or `yarn build`.
+5. Open Chrome and navigate to `chrome://extensions/` make sure you enable [developer mode](https://developer.chrome.com/docs/extensions/mv2/faq/#:~:text=You%20can%20start%20by%20turning,a%20packaged%20extension%2C%20and%20more.).
+6. Click on the `Load unpacked extension` button, located the public folder and click on the `Load` button.
+7. You should now see the extension in the list of extensions. And can use Sugu in the browser.
+
+### Firefox
+
+1. Clone the code with your git client of choice or zip download.
+2. Open a terminal and navigate to the root of the project.
+3. Run `npm install` or `yarn`.
+4. Run `npm run build` or `yarn build`.
+5. Delete the `manifest.json` file in the `public` folder, and rename the `manifest.v2.json` file to `manifest.json`. (This is because Firefox does not support v3 manifest files and chrome requires them!)
+6. Open Chrome and navigate to `about:debugging` page and click "This Firefox" from the menu.
+7. Click on the `Load Temporary Add-on` button, located the public folder and click on the `Load` button.
+8. You should now see the extension in the list of extensions. And can use Sugu in the browser.
+
+
+#### Non-developers
 
 TBA
 
@@ -97,12 +122,13 @@ TBA
 - [Omni](https://github.com/alyssaxuu/omni) - Alyssa X's Original Omni Chrome Extension
 - [whats.new](https://whats.new/) - Amazing resource for url as shortcuts
 - [Fluid UI Icons](https://github.com/microsoft/fluentui-system-icons) - Microsoft Fluent UI Icons
+- [Web Extension Polyfill](https://github.com/mozilla/webextension-polyfill) - Web Extension Polyfill
 
 ## Disclaimer
 
 ### Acknowledgments
 
-This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) by Alyssa X. This project was originally developed to be a alternative JQuery-less version of Omni, but due to the scope of changes and rewrites the project has become its own development. The project is offered with the same MIT license so that people are free to take optimizations and implement them back into Omni if wanted, but I highly recommend you checkout and help this project develop further.
+This work is highly inspired by [Omni](https://github.com/alyssaxuu/omni) by Alyssa X. This project was originally developed to be a alternative JQuery-less version of Omni, but due to the scope of changes rewrites and features the project has become its own development. The project is offered with the same MIT license so that people are free to take optimizations and implement them back into Omni if wanted, but I highly recommend you checkout and help this project develop further.
 
 ## Contact
 
