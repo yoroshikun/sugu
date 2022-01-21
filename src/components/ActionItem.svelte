@@ -17,11 +17,11 @@
 </script>
 
 <div
-  id="sugu-item-{action.title.toLowerCase().split(' ').join('-')}"
   class="sugu-item"
   class:sugu-item-active={isSelected}
   data-type={action.type}
   data-url={action.url}
+  data-id={encodeURIComponent(action.title)}
   on:click={() => handleClick(action)}
 >
   <div class="sugu-left">

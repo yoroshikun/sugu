@@ -7,6 +7,7 @@
   import { search } from "../stores/search";
   import getTextWidth from "../helpers/getTextWidth";
   import detectBrowser from "../helpers/detectBrowser";
+  import { commands } from "webextension-polyfill";
 
   let searchValue = "";
   let ghostAction: Action = null;
@@ -19,7 +20,7 @@
 
     if (enteredCommandMode) {
       searchValue = $search.current;
-      // TODO Fill actions list with command specific
+      actions.prepareCommand($search.command);
       return;
     }
 
@@ -67,7 +68,8 @@
     bind:value={searchValue}
     on:input={(e) => debounce(handleSearchInput(e))}
   />
-  {#if ghostText}
+  {#if ghostText && !$search.command}
+    <!-- Temp disable if in command mode-->
     <div
       class="sugu-input-ghost"
       style={`left: calc(2.25em + ${Math.ceil(
