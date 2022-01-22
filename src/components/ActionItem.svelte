@@ -2,6 +2,8 @@
   import type { Action } from "../actions/types";
 
   import { createEventDispatcher } from "svelte";
+  import { scale } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
   import { Globe } from "../actions/icons/fluidui";
   import { actions } from "../stores/actions";
 
@@ -23,6 +25,12 @@
   data-url={action.url}
   data-id={encodeURIComponent(action.title)}
   on:click={() => handleClick(action)}
+  in:scale={{
+    duration: 375,
+    opacity: 0.4,
+    start: 0.8,
+    easing: quintOut,
+  }}
 >
   <div class="sugu-left">
     {#if action.icon}

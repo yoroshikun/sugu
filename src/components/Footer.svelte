@@ -60,7 +60,7 @@
   }
 
   .sugu-settings {
-    display: flex;
+    display: none /*flex*/;
     align-items: center;
     background: var(--background-sugu);
     border-radius: 1em;
