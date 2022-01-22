@@ -1,5 +1,9 @@
 # Sugu Search
 
+![Preview](preview.gif)
+<br>
+<br>
+
 Instant spotlight like search and actions in your browser with Sugu Search. 
 
 Developed by [Drew Hutton](https://github.com/yoroshikun)
@@ -19,13 +23,14 @@ Developed by [Drew Hutton](https://github.com/yoroshikun)
 
 - ⚡️ Blazing fast and lightweight UX Built with Svelte
 - 💅 Modern Fluid UI
+- 👀 Suggested actions in the search bar
 - 🗂 Tab management
 - 📚 Bookmarks management
 - ⌨ Keyboard shortcuts
 - 🔌 Plugin based extendable actions
 - 🌙 Dark and light mode
 - 🔒 Secure, private no login
-- 🧩 Integrations 
+- 🧩 Integrations (Web shortcuts)
 
 Much more not listed...
 
