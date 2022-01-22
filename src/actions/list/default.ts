@@ -112,7 +112,7 @@ const actions: Action[] = [
     description: "Get help with Sugu on GitHub",
     type: "action",
     action: "url",
-    url: "https://github.com/yoroshikun/sugu-search",
+    url: "https://github.com/yoroshikun/sugu",
     icon: PersonQuestionMark,
   },
   {
