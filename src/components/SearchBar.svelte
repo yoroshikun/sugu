@@ -5,13 +5,9 @@
   import debounce from "../helpers/debounce";
   import { actions } from "../stores/actions";
   import { search } from "../stores/search";
-  import getTextWidth from "../helpers/getTextWidth";
-  import detectBrowser from "../helpers/detectBrowser";
-  import { commands } from "webextension-polyfill";
 
   let searchValue = "";
   let ghostAction: Action = null;
-  let isFirefox = detectBrowser() === "Mozilla Firefox";
 
   $: handleSearchInput = (
     e: Event & { currentTarget: EventTarget & HTMLInputElement }
@@ -43,7 +39,9 @@
     }
   }
 
-  $: ghostText = ghostAction?.title.slice(searchValue.length) || "";
+  $: ghostText = ghostAction
+    ? searchValue + ghostAction.title.slice(searchValue.length)
+    : "";
 </script>
 
 <div class="sugu-input-container">
@@ -59,33 +57,25 @@
       /{$search.command}
     </div>
   {/if}
-  <input
-    id="sugu-input"
-    type="search"
-    autocomplete="off"
-    class="sugu-search-input"
-    placeholder="Start typing..."
-    bind:value={searchValue}
-    on:input={(e) => debounce(handleSearchInput(e))}
-  />
-  {#if ghostText && !$search.command}
-    <!-- Temp disable if in command mode-->
-    <div
-      class="sugu-input-ghost"
-      style={`left: calc(2.25em + ${Math.ceil(
-        getTextWidth(
-          ghostAction.title.slice(
-            0,
-            searchValue.length +
-              (ghostAction.title.charAt(searchValue.length) === " " ? 1 : 0)
-          ),
-          "400 22.4px OpenSans"
-        )
-      )}px); margin-top: ${isFirefox ? 4 : 0}px`}
-    >
-      {ghostText}
-    </div>
-  {/if}
+  <div style="flex: 1">
+    {#if ghostText}
+      <input
+        class="sugu-input-ghost"
+        type="search"
+        value={ghostText}
+        style={`width: calc(100% - ${$search.command ? 6 : 3}em);`}
+      />
+    {/if}
+    <input
+      id="sugu-input"
+      type="search"
+      autocomplete="off"
+      class="sugu-search-input"
+      placeholder="Start typing..."
+      bind:value={searchValue}
+      on:input={(e) => debounce(handleSearchInput(e))}
+    />
+  </div>
 </div>
 
 <style>
@@ -93,7 +83,7 @@
     fill: var(--accent-sugu);
     width: 2em;
     height: 2em;
-    margin-left: -1em;
+    margin-left: 0.75em;
     margin-right: 0.5em;
   }
 
@@ -106,13 +96,14 @@
 
   .sugu-search-input {
     display: block;
+    position: relative;
     background: transparent;
     border: 0;
     padding: 0;
     outline: none;
     font-size: 1.4em;
     font-weight: 400;
-    height: 3em;
+    height: 2.5em;
     width: 100%;
     color: var(--text-sugu);
     caret-color: var(--accent-sugu);
@@ -120,16 +111,22 @@
 
   .sugu-input-ghost {
     position: absolute;
-    left: 2.25em;
-    width: 100%;
-    color: var(--placeholder-sugu);
+    top: 0;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    outline: none;
     font-size: 1.4em;
     font-weight: 400;
-    height: 3em;
+    height: 2.5em;
+    width: 100%;
+    color: var(--placeholder-sugu);
     pointer-events: none;
-    display: flex;
-    align-items: center;
-    margin-top: 4px;
+  }
+
+  .sugu-input-ghost::placeholder {
+    color: var(--placeholder-sugu);
+    opacity: 1;
   }
 
   .sugu-search-input::placeholder {
@@ -148,20 +145,17 @@
     font-size: 1.4em;
     font-weight: 400;
     color: var(--placeholder-sugu);
-    margin-top: -4px;
     margin-right: 0.5em;
   }
 
   .sugu-input-container {
-    box-sizing: border-box;
+    box-sizing: content-box;
     position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    height: 3rem;
     width: 100%;
-    padding: 1.75em;
     background: var(--background-sugu);
     border: 1px solid var(--border-sugu);
     border-radius: 1em;
