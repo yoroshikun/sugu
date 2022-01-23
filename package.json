@@ -5,7 +5,10 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "validate": "svelte-check"
+    "validate": "svelte-check",
+    "build_chrome": "sh ./scripts/prepare_chrome.sh",
+    "build_firefox": "sh ./scripts/prepare_firefox.sh",
+    "clean": "rm -rf firefox chrome public/build"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.0",
