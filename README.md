@@ -8,6 +8,8 @@ Instant spotlight like search and actions in your browser with Sugu Search.
 
 Developed by [Drew Hutton](https://github.com/yoroshikun)
 
+Grab it today for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/sugu-search/) and Chrome soon.
+
 ## Table of contents
 
 - [Features](#features)
