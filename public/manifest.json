@@ -2,7 +2,7 @@
   "name": "Sugu Search",
   "description": "Instant spotlight like search and actions with Sugu Search for your browser",
   "offline_enabled": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "action": {
     "default": "sugu.html",

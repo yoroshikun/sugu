@@ -1,7 +1,7 @@
 {
   "name": "Sugu Search",
   "description": "Instant spotlight like search and actions with Sugu Search for your browser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": {
